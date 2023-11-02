@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'index_page.dart';
+import 'package:flutter_tutorial/index_page.dart';
 
 void main() {
   runApp(const MyApp());
