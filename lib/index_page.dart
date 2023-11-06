@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,35 +13,46 @@ class IndexPage extends StatelessWidget {
         children: [
           Center(
             child: ElevatedButton(
-                onPressed:(){
+                onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
+                    MaterialPageRoute(
+                        builder: (context) => BuildingLayoutPage()),
                   );
                 },
-                child: Text('Tutorial1')
+                child: Text('Tutorial1')),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AnimationPage()),
+                );
+              },
+              child: Text('Tutorial1.1'),
             ),
           ),
           Center(
             child: ElevatedButton(
-                onPressed:(){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => AnimationPage()),
-                  );
-                },
-                child: Text('Tutorial1.1'),
-            ),
-          ),
-          Center(
-            child: ElevatedButton(
-              onPressed:(){
+              onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => YoutubePage()),
                 );
               },
               child: Text('YouTubeボタン'),
+            ),
+          ),
+          Center(
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => RegidencePage()),
+                );
+              },
+              child: Text('Regidence'),
             ),
           ),
         ],
