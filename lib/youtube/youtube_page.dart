@@ -29,7 +29,7 @@ class _YoutubePageState extends State<YoutubePage> {
               size: 25,
               color: Colors.white,
             ),
-            onPressed: () {}, //追加
+            onPressed: () {},
           ),
           IconButton(
             icon: Icon(
@@ -37,7 +37,7 @@ class _YoutubePageState extends State<YoutubePage> {
               size: 28,
               color: Colors.white,
             ),
-            onPressed: () {}, //追加
+            onPressed: () {},
           ),
           IconButton(
             icon: Icon(
@@ -45,10 +45,10 @@ class _YoutubePageState extends State<YoutubePage> {
               size: 25,
               color: Colors.white,
             ),
-            onPressed: () {}, //追加
+            onPressed: () {},
           ),
           IconButton(
-            onPressed: () {}, // 追加
+            onPressed: () {},
             icon: Stack(
               alignment: Alignment.center,
               children: [
@@ -153,19 +153,19 @@ class _YoutubePageState extends State<YoutubePage> {
                 style: TextStyle(color: Colors.white54),
               ),
               leading: Stack(
-                alignment: Alignment.center, // アイコンの中央にテキストを配置
+                alignment: Alignment.center,
                 children: [
                   Icon(
                     Icons.circle,
                     size: 60,
                     color: Colors.white,
                   ),
-                  Text(
+                  const Text(
                     'ARASHI',
                     style: TextStyle(
-                      color: Colors.black, // テキストの色を調整
-                      fontSize: 10, // フォントサイズを調整
-                      fontWeight: FontWeight.bold, // フォントの太さを調整
+                      color: Colors.black,
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
                 ],
