@@ -24,7 +24,7 @@ class YoutubePage extends StatefulWidget {
 class _YoutubePageState extends State<YoutubePage> {
   int _selectedIndex = 0;
 
-  final List<MovieInfo> _MovieData = [
+  final List<MovieInfo> _movieData = [
     MovieInfo(
       imagePath:
           'https://cgsc.info/cgsc2020/wp-content/uploads/2020/12/image.png',
@@ -169,7 +169,7 @@ class _YoutubePageState extends State<YoutubePage> {
               ListView.builder(
                 shrinkWrap: true,
                 physics: NeverScrollableScrollPhysics(),
-                itemCount: _MovieData.length,
+                itemCount: _movieData.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
@@ -177,17 +177,17 @@ class _YoutubePageState extends State<YoutubePage> {
                         width: double.infinity,
                         height: 180,
                         child: Image.network(
-                          _MovieData[index].imagePath,
+                          _movieData[index].imagePath,
                           fit: BoxFit.cover,
                         ),
                       ),
                       ListTile(
                         title: Text(
-                          _MovieData[index].title,
+                          _movieData[index].title,
                           style: TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
-                          _MovieData[index].subTitle,
+                          _movieData[index].subTitle,
                           style: TextStyle(color: Colors.white54),
                         ),
                         leading: Stack(
