@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-class mercari extends StatefulWidget {
-  const mercari({Key? key}) : super(key: key);
+class Mercari extends StatefulWidget {
+  const Mercari({Key? key}) : super(key: key);
 
   @override
-  State<mercari> createState() => _mercariState();
+  State<Mercari> createState() => _mercariState();
 }
 
-class _mercariState extends State<mercari> {
+class _mercariState extends State<Mercari> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text(
+        title: const Text(
           '出品',
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -24,9 +24,9 @@ class _mercariState extends State<mercari> {
       body: ListView(children: [
         Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: shortcut(),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Shortcut(),
             ),
             Container(
               decoration: BoxDecoration(
@@ -35,25 +35,23 @@ class _mercariState extends State<mercari> {
                 ),
               ),
               child: ListTile(
-                title: Text(
+                title: const Text(
                   '売れやすい持ち物',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 16,
                   ),
                 ),
-                subtitle: Text(
+                subtitle: const Text(
                   '使わないモノを出品してみよう！',
                   style: TextStyle(
                     fontSize: 13,
                   ),
                 ),
                 trailing: TextButton(
-                  onPressed: () {
-                    // ボタンがタップされたときの処理
-                  },
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min, // Rowのサイズを子のサイズに合わせる
+                  onPressed: () {},
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
                         'すべて見る',
@@ -61,7 +59,7 @@ class _mercariState extends State<mercari> {
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
-                        size: 16.0, // アイコンのサイズを小さくする
+                        size: 16.0,
                         color: Colors.blue,
                       ),
                     ],
@@ -69,11 +67,11 @@ class _mercariState extends State<mercari> {
                 ),
               ),
             ),
-            itemlist(),
-            itemlist(),
-            itemlist(),
-            itemlist(),
-            itemlist(),
+            const ItemList(),
+            const ItemList(),
+            const ItemList(),
+            const ItemList(),
+            const ItemList(),
           ],
         ),
       ]),
@@ -81,8 +79,8 @@ class _mercariState extends State<mercari> {
   }
 }
 
-class shortcut extends StatelessWidget {
-  const shortcut({Key? key}) : super(key: key);
+class Shortcut extends StatelessWidget {
+  const Shortcut({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +92,8 @@ class shortcut extends StatelessWidget {
           children: [
             Image.network(
                 'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png'),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
+            const Padding(
+              padding: EdgeInsets.all(14.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -114,7 +112,7 @@ class shortcut extends StatelessWidget {
                   width: 80,
                   height: 90,
                   color: Colors.white,
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -133,7 +131,7 @@ class shortcut extends StatelessWidget {
                   width: 80,
                   height: 90,
                   color: Colors.white,
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.photo_album_outlined),
@@ -150,7 +148,7 @@ class shortcut extends StatelessWidget {
                   width: 80,
                   height: 90,
                   color: Colors.white,
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.barcode_reader),
@@ -173,7 +171,7 @@ class shortcut extends StatelessWidget {
                   width: 80,
                   height: 90,
                   color: Colors.white,
-                  child: Column(
+                  child: const Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(Icons.sticky_note_2_sharp),
@@ -195,14 +193,14 @@ class shortcut extends StatelessWidget {
   }
 }
 
-class itemlist extends StatefulWidget {
-  const itemlist({Key? key}) : super(key: key);
+class ItemList extends StatefulWidget {
+  const ItemList({Key? key}) : super(key: key);
 
   @override
-  State<itemlist> createState() => _itemlistState();
+  State<ItemList> createState() => _itemlistState();
 }
 
-class _itemlistState extends State<itemlist> {
+class _itemlistState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -218,7 +216,16 @@ class _itemlistState extends State<itemlist> {
         ),
         trailing: ElevatedButton(
           onPressed: () {},
-          child: Text(
+          style: ElevatedButton.styleFrom(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
+            primary: Colors.red,
+          ),
+          child: const Text(
             '出品する',
             style: TextStyle(
               color: Colors.white,
@@ -226,17 +233,8 @@ class _itemlistState extends State<itemlist> {
               fontSize: 11,
             ),
           ),
-          style: ElevatedButton.styleFrom(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(5),
-              ),
-            ),
-            primary: Colors.red,
-          ),
         ),
-        title: Column(
+        title: const Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -254,7 +252,7 @@ class _itemlistState extends State<itemlist> {
             ),
           ],
         ),
-        subtitle: Row(
+        subtitle: const Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
@@ -267,7 +265,7 @@ class _itemlistState extends State<itemlist> {
             ),
           ],
         ),
-        contentPadding: EdgeInsets.symmetric(horizontal: 5.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
       ),
     );
   }
