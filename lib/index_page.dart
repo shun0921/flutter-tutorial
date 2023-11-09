@@ -5,14 +5,17 @@ import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
+  const IndexPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: ElevatedButton(
+
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -21,16 +24,20 @@ class IndexPage extends StatelessWidget {
                   );
                 },
                 child: Text('Tutorial1')),
+
             ElevatedButton(
+         
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AnimationPage()),
                 );
               },
+
               child: Text('Tutorial1.1'),
             ),
             ElevatedButton(
+
               onPressed: () {
                 Navigator.push(
                   context,
@@ -47,6 +54,7 @@ class IndexPage extends StatelessWidget {
                 );
               },
               child: Text('Regidence'),
+
             ),
           ],
         ),
