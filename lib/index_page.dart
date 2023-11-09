@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
+import 'package:flutter_tutorial/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
@@ -47,6 +48,16 @@ class IndexPage extends StatelessWidget {
                 );
               },
               child: const Text('YouTubeボタン'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(builder: (context) => const AsyncPage()),
+                );
+              },
+              child: const Text('async'),
             ),
           ],
         ),
