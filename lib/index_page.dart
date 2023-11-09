@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
-import 'package:flutter_tutorial/async.dart';
+import 'package:flutter_tutorial/async/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
