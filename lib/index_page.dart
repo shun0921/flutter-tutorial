@@ -12,38 +12,31 @@ class IndexPage extends StatelessWidget {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BuildingLayoutPage()),
-                  );
-                },
-                child: Text('Tutorial1')),
-          ),
-          Center(
-            child: ElevatedButton(
+          ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AnimationPage()),
+                  MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
                 );
               },
-              child: Text('Tutorial1-1'),
-            ),
+              child: Text('Tutorial1')),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => AnimationPage()),
+              );
+            },
+            child: Text('Tutorial1-1'),
           ),
-          Center(
-            child: ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => YoutubePage()),
-                );
-              },
-              child: Text('YouTubeボタン'),
-            ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => YoutubePage()),
+              );
+            },
+            child: Text('YouTubeボタン'),
           ),
         ],
       ),
