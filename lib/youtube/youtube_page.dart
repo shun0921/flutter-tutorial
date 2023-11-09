@@ -172,6 +172,7 @@ class _YoutubePageState extends State<YoutubePage> {
               ),
             ),
             SizedBox(
+
               width: double.infinity,
               height: 180,
               child: Image.network(

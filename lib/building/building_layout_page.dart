@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 class BuildingLayoutPage extends StatelessWidget {
   const BuildingLayoutPage({Key? key}) : super(key: key);
 
@@ -181,4 +182,5 @@ class _FavoriteWidgetState extends State<FavoriteWidget> {
       ],
     );
   }
+ }
 }
