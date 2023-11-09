@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class Mercari extends StatefulWidget {
+class Mercari extends StatelessWidget {
   const Mercari({Key? key}) : super(key: key);
 
-  @override
-  State<Mercari> createState() => _mercariState();
-}
-
-class _mercariState extends State<Mercari> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
