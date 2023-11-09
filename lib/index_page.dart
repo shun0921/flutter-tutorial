@@ -9,36 +9,47 @@ class IndexPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const BuildingLayoutPage(),
+                  ),
                 );
               },
-              child: Text('Tutorial1')),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AnimationPage()),
-              );
-            },
-            child: Text('Tutorial1-1'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => YoutubePage()),
-              );
-            },
-            child: Text('YouTubeボタン'),
-          ),
-        ],
+              child: const Text('Tutorial1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // ignore: lines_longer_than_80_chars
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const AnimationPage(),
+                  ),
+                );
+              },
+              child: const Text('Tutorial1-1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                );
+              },
+              child: const Text('YouTubeボタン'),
+            ),
+          ],
+        ),
       ),
     );
   }
