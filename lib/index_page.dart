@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+import 'package:flutter_tutorial/mercari/mercari_page.dart';
 import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
@@ -46,7 +47,16 @@ class IndexPage extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => RegidencePage()),
               );
             },
-            child: Text('YouTubeボタン'),
+            child: Text('Regidence'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Mercari()),
+              );
+            },
+            child: Text('mercari'),
           ),
         ],
       ),
