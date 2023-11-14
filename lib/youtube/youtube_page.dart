@@ -44,7 +44,7 @@ class _YoutubePageState extends State<YoutubePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'YouTube',
           style: TextStyle(
             color: Colors.white,
@@ -54,7 +54,7 @@ class _YoutubePageState extends State<YoutubePage> {
         ),
         actions: [
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.connected_tv,
               size: 25,
               color: Colors.white,
@@ -62,7 +62,7 @@ class _YoutubePageState extends State<YoutubePage> {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.notifications_none,
               size: 28,
               color: Colors.white,
@@ -70,7 +70,7 @@ class _YoutubePageState extends State<YoutubePage> {
             onPressed: () {},
           ),
           IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.search_rounded,
               size: 25,
               color: Colors.white,
@@ -79,7 +79,7 @@ class _YoutubePageState extends State<YoutubePage> {
           ),
           IconButton(
             onPressed: () {},
-            icon: Stack(
+            icon: const Stack(
               alignment: Alignment.center,
               children: [
                 Icon(
@@ -98,7 +98,7 @@ class _YoutubePageState extends State<YoutubePage> {
         ],
         backgroundColor: Colors.black.withOpacity(0.8),
         centerTitle: false,
-        leading: Icon(
+        leading: const Icon(
           Icons.play_circle_filled_outlined,
           color: Colors.red,
           size: 30,
@@ -115,9 +115,10 @@ class _YoutubePageState extends State<YoutubePage> {
                   children: [
                     GridView.builder(
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemCount: 7,
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 3.2,
                         mainAxisSpacing: 8.0,
@@ -125,31 +126,31 @@ class _YoutubePageState extends State<YoutubePage> {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         List<CustomButton> buttons = [
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.local_fire_department,
                               label: "急上昇",
                               color: Colors.red),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.music_note,
                               label: "音楽",
                               color: Colors.teal),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.gamepad_rounded,
                               label: "ゲーム",
                               color: Colors.pinkAccent),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.menu_sharp,
                               label: "ニュース",
                               color: Colors.indigo),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.menu_sharp,
                               label: "学び",
                               color: Colors.green),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.live_tv,
                               label: "ライブ",
                               color: Colors.deepOrangeAccent),
-                          CustomButton(
+                          const CustomButton(
                               icon: Icons.play_circle_fill,
                               label: "スポーツ",
                               color: Colors.cyan),
@@ -160,7 +161,7 @@ class _YoutubePageState extends State<YoutubePage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.all(20.0),
-                      child: Text("急上昇動画",
+                      child: const Text("急上昇動画",
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
                   ],
@@ -168,12 +169,12 @@ class _YoutubePageState extends State<YoutubePage> {
               ),
               ListView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: _movieData.length,
                 itemBuilder: (BuildContext context, int index) {
                   return Column(
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: 180,
                         child: Image.network(
@@ -184,13 +185,13 @@ class _YoutubePageState extends State<YoutubePage> {
                       ListTile(
                         title: Text(
                           _movieData[index].title,
-                          style: TextStyle(color: Colors.white),
+                          style: const TextStyle(color: Colors.white),
                         ),
                         subtitle: Text(
                           _movieData[index].subTitle,
-                          style: TextStyle(color: Colors.white54),
+                          style: const TextStyle(color: Colors.white54),
                         ),
-                        leading: Stack(
+                        leading: const Stack(
                           alignment: Alignment.center,
                           children: [
                             Icon(
@@ -217,12 +218,12 @@ class _YoutubePageState extends State<YoutubePage> {
             _selectedIndex = index;
           });
         },
-        selectedLabelStyle: TextStyle(fontSize: 10),
+        selectedLabelStyle: const TextStyle(fontSize: 10),
         selectedItemColor: Colors.white,
-        unselectedLabelStyle: TextStyle(fontSize: 10),
+        unselectedLabelStyle: const TextStyle(fontSize: 10),
         unselectedItemColor: Colors.white.withOpacity(0.9),
         backgroundColor: Colors.black,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'ホーム',
@@ -257,7 +258,8 @@ class CustomButton extends StatelessWidget {
   final String label;
   final Color color;
 
-  CustomButton({
+  const CustomButton({
+    super.key,
     required this.icon,
     required this.label,
     required this.color,
@@ -276,10 +278,10 @@ class CustomButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Colors.white),
-          SizedBox(width: 5.0),
+          const SizedBox(width: 5.0),
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontSize: 17,
             ),
