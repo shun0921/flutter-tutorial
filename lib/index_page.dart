@@ -18,45 +18,46 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const BuildingLayoutPage()),
                 );
               },
-              child: Text('Tutorial1')),
+              child: const Text('Tutorial1')),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => AnimationPage()),
+                MaterialPageRoute(builder: (context) => const AnimationPage()),
               );
             },
-            child: Text('Tutorial1-1'),
+            child: const Text('Tutorial1-1'),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => YoutubePage()),
+                MaterialPageRoute(builder: (context) => const YoutubePage()),
               );
             },
-            child: Text('YouTubeボタン'),
+            child: const Text('YouTubeボタン'),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => RegidencePage()),
+                MaterialPageRoute(builder: (context) => const RegidencePage()),
               );
             },
-            child: Text('Regidence'),
+            child: const Text('Regidence'),
           ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Mercari()),
+                MaterialPageRoute(builder: (context) => const Mercari()),
               );
             },
-            child: Text('mercari'),
+            child: const Text('mercari'),
           ),
         ],
       ),

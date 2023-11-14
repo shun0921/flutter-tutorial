@@ -61,8 +61,7 @@ class _AnimationPageState extends State<AnimationPage>
         } else if (status == AnimationStatus.dismissed) {
           controller.forward();
         }
-      })
-      ..addStatusListener((status) => print('$status'));
+      });
     controller.forward();
   }
 
@@ -85,6 +84,7 @@ class AnimatedLogo extends AnimatedWidget {
   const AnimatedLogo({super.key, required Animation<double> animation})
       : super(listenable: animation);
 
+  // Make the Tweens static because they don't change.
   static final _opacityTween = Tween<double>(begin: 0.1, end: 1);
   static final _sizeTween = Tween<double>(begin: 0, end: 300);
 
