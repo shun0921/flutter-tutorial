@@ -1,22 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/index_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tutorial/article_screen.dart';
+import 'package:flutter_tutorial/qiita_provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyApp extends ConsumerWidget {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+      navigatorKey: navigatorKey,
+      title: 'Qiita記事取得',
+      home: Scaffold(
+        appBar: AppBar(title: Text('Qiita記事取得')),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              ElevatedButton(
+                onPressed: () => fetchAndDisplayArticles(ref, 'iOS'),
+                child: Text('iOS'),
+              ),
+              ElevatedButton(
+                onPressed: () => fetchAndDisplayArticles(ref, 'Android'),
+                child: Text('Android'),
+              ),
+              ElevatedButton(
+                onPressed: () => fetchAndDisplayArticles(ref, 'Flutter'),
+                child: Text('Flutter'),
+              ),
+            ],
+          ),
+        ),
       ),
-      home: IndexPage(),
     );
+  }
+
+  void fetchAndDisplayArticles(WidgetRef ref, String tag) async {
+    try {
+      final qiitaProviderInstance = ref.read(qiitaProvider);
+      await qiitaProviderInstance.fetchArticles(tag);
+      navigatorKey.currentState!.push(
+        MaterialPageRoute(builder: (context) => ArticlesScreen()),
+      );
+    } catch (e) {
+      print('Error: $e');
+    }
   }
 }
