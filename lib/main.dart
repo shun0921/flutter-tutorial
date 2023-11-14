@@ -14,28 +14,30 @@ void main() {
 class MyApp extends ConsumerWidget {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
+  MyApp({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return MaterialApp(
       navigatorKey: navigatorKey,
       title: 'Qiita記事取得',
       home: Scaffold(
-        appBar: AppBar(title: Text('Qiita記事取得')),
+        appBar: AppBar(title: const Text('Qiita記事取得')),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
               ElevatedButton(
                 onPressed: () => fetchAndDisplayArticles(ref, 'iOS'),
-                child: Text('iOS'),
+                child: const Text('iOS'),
               ),
               ElevatedButton(
                 onPressed: () => fetchAndDisplayArticles(ref, 'Android'),
-                child: Text('Android'),
+                child: const Text('Android'),
               ),
               ElevatedButton(
                 onPressed: () => fetchAndDisplayArticles(ref, 'Flutter'),
-                child: Text('Flutter'),
+                child: const Text('Flutter'),
               ),
             ],
           ),
@@ -49,10 +51,9 @@ class MyApp extends ConsumerWidget {
       final qiitaProviderInstance = ref.read(qiitaProvider);
       await qiitaProviderInstance.fetchArticles(tag);
       navigatorKey.currentState!.push(
-        MaterialPageRoute(builder: (context) => ArticlesScreen()),
+        MaterialPageRoute(builder: (context) => const ArticlesScreen()),
       );
-    } catch (e) {
-      print('Error: $e');
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 }

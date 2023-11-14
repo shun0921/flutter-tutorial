@@ -3,14 +3,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/qiita_provider.dart';
 
 class ArticlesScreen extends ConsumerWidget {
+  const ArticlesScreen({super.key});
+
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final provider = ref.watch(qiitaProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text('記事')),
+      appBar: AppBar(title: const Text('記事')),
       body: provider.articles.isEmpty
-          ? Center(child: Text("No found"))
+          ? const Center(child: Text("No found"))
           : ListView.builder(
               padding: const EdgeInsets.all(8.0),
               itemCount: provider.articles.length,
@@ -20,7 +22,7 @@ class ArticlesScreen extends ConsumerWidget {
                   margin: const EdgeInsets.symmetric(
                       vertical: 4.0, horizontal: 8.0),
                   child: ListTile(
-                      leading: CircleAvatar(
+                      leading: const CircleAvatar(
                         backgroundImage: NetworkImage(
                           'https://www.hokkaisozai.com/wp-content/uploads/top_concept.jpg',
                         ),
