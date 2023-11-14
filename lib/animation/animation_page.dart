@@ -38,6 +38,8 @@ class GrowTransition extends StatelessWidget {
 }
 
 class AnimationPage extends StatefulWidget {
+  const AnimationPage({super.key});
+
   @override
   State<AnimationPage> createState() => _AnimationPageState();
 }
@@ -47,6 +49,7 @@ class _AnimationPageState extends State<AnimationPage>
   late Animation<double> animation;
   late AnimationController controller;
 
+  @override
   void initState() {
     super.initState();
     controller =
