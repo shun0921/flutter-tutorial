@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class BuildingLayoutPage extends StatelessWidget {
   const BuildingLayoutPage({super.key});
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
