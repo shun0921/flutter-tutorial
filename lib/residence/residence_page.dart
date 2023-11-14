@@ -213,10 +213,10 @@ class Recommend extends StatefulWidget {
   const Recommend({Key? key}) : super(key: key);
 
   @override
-  State<Recommend> createState() => _recommendState();
+  State<Recommend> createState() => _RecommendState();
 }
 
-class _recommendState extends State<Recommend> {
+class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -326,10 +326,10 @@ class HouseDetail extends StatefulWidget {
   const HouseDetail({Key? key}) : super(key: key);
 
   @override
-  State<HouseDetail> createState() => _houseDetailState();
+  State<HouseDetail> createState() => _HouseDetailState();
 }
 
-class _houseDetailState extends State<HouseDetail> {
+class _HouseDetailState extends State<HouseDetail> {
   @override
   Widget build(BuildContext context) {
     return Padding(
