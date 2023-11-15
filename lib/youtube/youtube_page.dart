@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 
 class MovieInfo {
@@ -15,7 +17,7 @@ class MovieInfo {
 }
 
 class YoutubePage extends StatefulWidget {
-  const YoutubePage({Key? key}) : super(key: key);
+  const YoutubePage({super.key});
 
   @override
   State<YoutubePage> createState() => _YoutubePageState();
@@ -24,6 +26,43 @@ class YoutubePage extends StatefulWidget {
 class _YoutubePageState extends State<YoutubePage> {
   int _selectedIndex = 0;
 
+  final List<CustomButton> buttons = [
+    const CustomButton(
+      icon: Icons.local_fire_department,
+      label: '急上昇',
+      color: Colors.red,
+    ),
+    const CustomButton(
+      icon: Icons.music_note,
+      label: '音楽',
+      color: Colors.teal,
+    ),
+    const CustomButton(
+      icon: Icons.gamepad_rounded,
+      label: 'ゲーム',
+      color: Colors.pinkAccent,
+    ),
+    const CustomButton(
+      icon: Icons.menu_sharp,
+      label: 'ニュース',
+      color: Colors.indigo,
+    ),
+    const CustomButton(
+      icon: Icons.menu_sharp,
+      label: '学び',
+      color: Colors.green,
+    ),
+    const CustomButton(
+      icon: Icons.live_tv,
+      label: 'ライブ',
+      color: Colors.deepOrangeAccent,
+    ),
+    const CustomButton(
+      icon: Icons.play_circle_fill,
+      label: 'スポーツ',
+      color: Colors.cyan,
+    ),
+  ];
   final List<MovieInfo> _movieData = [
     MovieInfo(
       imagePath:
@@ -90,11 +129,13 @@ class _YoutubePageState extends State<YoutubePage> {
                 Text(
                   'T',
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-          )
+          ),
         ],
         backgroundColor: Colors.black.withOpacity(0.8),
         centerTitle: false,
@@ -104,19 +145,19 @@ class _YoutubePageState extends State<YoutubePage> {
           size: 30,
         ),
       ),
-      body: Container(
+      body: ColoredBox(
         color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              ColoredBox(
                 color: Colors.black87,
                 child: Column(
                   children: [
                     GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: 7,
+                      itemCount: buttons.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
@@ -124,45 +165,18 @@ class _YoutubePageState extends State<YoutubePage> {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 12,
                       ),
-                      itemBuilder: (BuildContext context, int index) {
-                        List<CustomButton> buttons = [
-                          const CustomButton(
-                              icon: Icons.local_fire_department,
-                              label: "急上昇",
-                              color: Colors.red),
-                          const CustomButton(
-                              icon: Icons.music_note,
-                              label: "音楽",
-                              color: Colors.teal),
-                          const CustomButton(
-                              icon: Icons.gamepad_rounded,
-                              label: "ゲーム",
-                              color: Colors.pinkAccent),
-                          const CustomButton(
-                              icon: Icons.menu_sharp,
-                              label: "ニュース",
-                              color: Colors.indigo),
-                          const CustomButton(
-                              icon: Icons.menu_sharp,
-                              label: "学び",
-                              color: Colors.green),
-                          const CustomButton(
-                              icon: Icons.live_tv,
-                              label: "ライブ",
-                              color: Colors.deepOrangeAccent),
-                          const CustomButton(
-                              icon: Icons.play_circle_fill,
-                              label: "スポーツ",
-                              color: Colors.cyan),
-                        ];
+                      itemBuilder: (BuildContext context, int index) 
+                      {
                         return buttons[index];
                       },
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(20.0),
-                      child: Text("急上昇動画",
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
+                      padding: const EdgeInsets.all(20),
+                      child: const Text(
+                        '急上昇動画',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                   ],
                 ),
@@ -254,6 +268,7 @@ class _YoutubePageState extends State<YoutubePage> {
 }
 
 class CustomButton extends StatelessWidget {
+  
   final IconData icon;
   final String label;
   final Color color;
