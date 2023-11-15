@@ -120,12 +120,12 @@ class _YoutubePageState extends State<YoutubePage> {
           size: 30,
         ),
       ),
-      body: Container(
+      body: ColoredBox(
         color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
+              ColoredBox(
                 color: Colors.black87,
                 child: Column(
                   children: [
@@ -137,8 +137,8 @@ class _YoutubePageState extends State<YoutubePage> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 3.2,
-                        mainAxisSpacing: 8.0,
-                        crossAxisSpacing: 12.0,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 12,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return buttons[index];
@@ -255,16 +255,16 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 10,
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Colors.white),
-          const SizedBox(width: 5.0),
+          const SizedBox(width: 5),
           Text(
             label,
             style: const TextStyle(
