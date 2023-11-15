@@ -9,47 +9,55 @@ class IndexPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            ElevatedButton(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
-                    builder: (context) => const BuildingLayoutPage(),
-                  ),
+                      builder: (context) => const BuildingLayoutPage()),
                 );
               },
-              child: const Text('Tutorial1'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                // ignore: lines_longer_than_80_chars
-                Navigator.push(
-                  context,
-                  // ignore: inference_failure_on_instance_creation
-                  MaterialPageRoute(
-                    builder: (context) => const AnimationPage(),
-                  ),
-                );
-              },
-              child: const Text('Tutorial1-1'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  // ignore: inference_failure_on_instance_creation
-                  MaterialPageRoute(builder: (context) => const YoutubePage()),
-                );
-              },
-              child: const Text('YouTubeボタン'),
-            ),
-          ],
-        ),
+              child: const Text('Tutorial1')),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const AnimationPage()),
+              );
+            },
+            child: const Text('Tutorial1-1'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const YoutubePage()),
+              );
+            },
+            child: const Text('YouTubeボタン'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const RegidencePage()),
+              );
+            },
+            child: const Text('Regidence'),
+          ),
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Mercari()),
+              );
+            },
+            child: const Text('mercari'),
+          ),
+        ],
       ),
     );
   }

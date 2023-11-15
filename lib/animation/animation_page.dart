@@ -13,11 +13,8 @@ class LogoWidget extends StatelessWidget {
 }
 
 class GrowTransition extends StatelessWidget {
-  const GrowTransition({
-    required this.child,
-    required this.animation,
-    super.key,
-  });
+  const GrowTransition(
+      {required this.child, required this.animation, super.key});
 
   final Widget child;
   final Animation<double> animation;

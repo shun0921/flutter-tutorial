@@ -1,10 +1,8 @@
-// ignore_for_file: lines_longer_than_80_chars, use_named_constants
-
 import 'package:flutter/material.dart';
 
 class BuildingLayoutPage extends StatelessWidget {
-  const BuildingLayoutPage({super.key});
-  
+  const BuildingLayoutPage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +19,7 @@ class BuildingLayoutPage extends StatelessWidget {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(42),
+                    padding: const EdgeInsets.all(42.0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -115,7 +113,7 @@ class BuildingLayoutPage extends StatelessWidget {
                 ],
               ),
               const Padding(
-                padding: EdgeInsets.all(32),
+                padding: EdgeInsets.all(32.0),
                 child: Text(
                   'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
                   'Alps. Situated 1,578 meters above sea level, it is one of the '

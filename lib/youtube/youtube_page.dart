@@ -1,18 +1,17 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 
 class MovieInfo {
+  final String imagePath;
+  final String iconPath;
+  final String title;
+  final String subTitle;
+
   MovieInfo({
     required this.imagePath,
     required this.iconPath,
     required this.title,
     required this.subTitle,
   });
-  final String imagePath;
-  final String iconPath;
-  final String title;
-  final String subTitle;
 }
 
 class YoutubePage extends StatefulWidget {
@@ -27,40 +26,18 @@ class _YoutubePageState extends State<YoutubePage> {
 
   final List<CustomButton> buttons = [
     const CustomButton(
-      icon: Icons.local_fire_department,
-      label: '急上昇',
-      color: Colors.red,
-    ),
+        icon: Icons.local_fire_department, label: "急上昇", color: Colors.red),
+    const CustomButton(icon: Icons.music_note, label: "音楽", color: Colors.teal),
     const CustomButton(
-      icon: Icons.music_note,
-      label: '音楽',
-      color: Colors.teal,
-    ),
+        icon: Icons.gamepad_rounded, label: "ゲーム", color: Colors.pinkAccent),
     const CustomButton(
-      icon: Icons.gamepad_rounded,
-      label: 'ゲーム',
-      color: Colors.pinkAccent,
-    ),
+        icon: Icons.menu_sharp, label: "ニュース", color: Colors.indigo),
     const CustomButton(
-      icon: Icons.menu_sharp,
-      label: 'ニュース',
-      color: Colors.indigo,
-    ),
+        icon: Icons.menu_sharp, label: "学び", color: Colors.green),
     const CustomButton(
-      icon: Icons.menu_sharp,
-      label: '学び',
-      color: Colors.green,
-    ),
+        icon: Icons.live_tv, label: "ライブ", color: Colors.deepOrangeAccent),
     const CustomButton(
-      icon: Icons.live_tv,
-      label: 'ライブ',
-      color: Colors.deepOrangeAccent,
-    ),
-    const CustomButton(
-      icon: Icons.play_circle_fill,
-      label: 'スポーツ',
-      color: Colors.cyan,
-    ),
+        icon: Icons.play_circle_fill, label: "スポーツ", color: Colors.cyan),
   ];
 
   final List<MovieInfo> _movieData = [
@@ -72,12 +49,11 @@ class _YoutubePageState extends State<YoutubePage> {
       subTitle: '嵐の動画のはず',
     ),
     MovieInfo(
-      imagePath:
-          'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
-      iconPath: 'Icons.circle',
-      title: 'musicmusicmusic',
-      subTitle: 'this is Eminem',
-    ),
+        imagePath:
+            'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
+        iconPath: 'Icons.circle',
+        title: 'musicmusicmusic',
+        subTitle: 'this is Eminem'),
   ];
 
   @override
@@ -130,13 +106,11 @@ class _YoutubePageState extends State<YoutubePage> {
                 Text(
                   'T',
                   style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
+                      color: Colors.white, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-          ),
+          )
         ],
         backgroundColor: Colors.black.withOpacity(0.8),
         centerTitle: false,
@@ -146,12 +120,12 @@ class _YoutubePageState extends State<YoutubePage> {
           size: 30,
         ),
       ),
-      body: ColoredBox(
+      body: Container(
         color: Colors.black,
         child: SingleChildScrollView(
           child: Column(
             children: [
-              ColoredBox(
+              Container(
                 color: Colors.black87,
                 child: Column(
                   children: [
@@ -163,8 +137,8 @@ class _YoutubePageState extends State<YoutubePage> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 3.2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 8.0,
+                        crossAxisSpacing: 12.0,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return buttons[index];
@@ -172,11 +146,9 @@ class _YoutubePageState extends State<YoutubePage> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(20),
-                      child: const Text(
-                        '急上昇動画',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
+                      padding: const EdgeInsets.all(20.0),
+                      child: const Text("急上昇動画",
+                          style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
                   ],
                 ),
@@ -268,31 +240,31 @@ class _YoutubePageState extends State<YoutubePage> {
 }
 
 class CustomButton extends StatelessWidget {
-  
+  final IconData icon;
+  final String label;
+  final Color color;
+
   const CustomButton({
     super.key,
     required this.icon,
     required this.label,
     required this.color,
   });
-  final IconData icon;
-  final String label;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 10,
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(5),
+        borderRadius: BorderRadius.circular(5.0),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
           Icon(icon, color: Colors.white),
-          const SizedBox(width: 5),
+          const SizedBox(width: 5.0),
           Text(
             label,
             style: const TextStyle(
