@@ -275,12 +275,12 @@ class ItemList extends StatelessWidget {
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 16),
+            backgroundColor: Colors.red,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(5),
               ),
             ),
-            primary: Colors.red,
           ),
           child: const Text(
             '出品する',

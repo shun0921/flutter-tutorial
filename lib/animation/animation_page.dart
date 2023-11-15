@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart';
 
-
 class LogoWidget extends StatelessWidget {
-  const LogoWidget ({super.key});
+  const LogoWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-        margin: const EdgeInsets.symmetric(vertical: 10),
-        child: const FlutterLogo(),
+      margin: const EdgeInsets.symmetric(vertical: 10),
+      child: const FlutterLogo(),
     );
   }
 }
 
 class GrowTransition extends StatelessWidget {
-  const GrowTransition(
-      {required this.child, required this.animation, super.key});
+  const GrowTransition({
+    required this.child,
+    required this.animation,
+    super.key,
+  });
 
   final Widget child;
   final Animation<double> animation;
@@ -39,35 +41,38 @@ class GrowTransition extends StatelessWidget {
 }
 
 class AnimationPage extends StatefulWidget {
+  const AnimationPage({super.key});
+
   @override
   State<AnimationPage> createState() => _AnimationPageState();
 }
 
-class _AnimationPageState extends State<AnimationPage> with SingleTickerProviderStateMixin {
-
+class _AnimationPageState extends State<AnimationPage>
+    with SingleTickerProviderStateMixin {
   late Animation<double> animation;
   late AnimationController controller;
 
+  @override
   void initState() {
     super.initState();
-     controller = AnimationController(duration: const Duration(seconds: 2), vsync: this);
+    controller =
+        AnimationController(duration: const Duration(seconds: 2), vsync: this);
     animation = Tween<double>(begin: 0, end: 300).animate(controller)
-         ..addStatusListener((status) {
-           if (status == AnimationStatus.completed) {
+      ..addStatusListener((status) {
+        if (status == AnimationStatus.completed) {
           controller.reverse();
         } else if (status == AnimationStatus.dismissed) {
           controller.forward();
         }
-         })
-         ..addStatusListener((status) => print('$status'));
-       controller.forward();
+      });
+    controller.forward();
   }
-  @override
 
+  @override
   Widget build(BuildContext context) {
     return GrowTransition(
-        animation: animation,
-        child: const LogoWidget(),
+      animation: animation,
+      child: const LogoWidget(),
     );
   }
 

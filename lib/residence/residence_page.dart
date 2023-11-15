@@ -17,7 +17,7 @@ class _RegidencePageState extends State<RegidencePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
+        preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
           automaticallyImplyLeading: false,
           title: Center(
@@ -33,10 +33,8 @@ class _RegidencePageState extends State<RegidencePage> {
                   child: _buildChoiceButtonSecond(
                       Choice.refurbished, 'リフォーム済みの物件'),
                 ),
-                Container(
-                  child: SizedBox(
-                    width: 40,
-                  ),
+                const SizedBox(
+                  width: 40,
                 ),
                 Container(
                   width: 40,
@@ -46,7 +44,7 @@ class _RegidencePageState extends State<RegidencePage> {
                     color: Colors.teal,
                   ),
                   child: IconButton(
-                    icon: Icon(Icons.add),
+                    icon: const Icon(Icons.add),
                     onPressed: () {},
                     color: Colors.white,
                   ),
@@ -59,18 +57,18 @@ class _RegidencePageState extends State<RegidencePage> {
       body: Container(
         color: Colors.grey.withOpacity(0.2),
         child: ListView(
-          children: [
+          children: const [
             Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: recommend(),
+              padding: EdgeInsets.all(5.0),
+              child: Recommend(),
             ),
             Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: houseDetail(),
+              padding: EdgeInsets.all(5.0),
+              child: HouseDetail(),
             ),
             Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: houseDetail(),
+              padding: EdgeInsets.all(5.0),
+              child: HouseDetail(),
             ),
           ],
         ),
@@ -83,17 +81,17 @@ class _RegidencePageState extends State<RegidencePage> {
             _selectedIndex = index;
           });
         },
-        selectedLabelStyle: TextStyle(fontSize: 10),
+        selectedLabelStyle: const TextStyle(fontSize: 10),
         selectedItemColor: Colors.teal,
-        unselectedLabelStyle: TextStyle(fontSize: 10),
+        unselectedLabelStyle: const TextStyle(fontSize: 10),
         unselectedItemColor: Colors.grey.withOpacity(0.9),
         backgroundColor: Colors.white,
         items: [
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'ホーム',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.favorite_border),
             label: 'お気にいり',
           ),
@@ -101,21 +99,21 @@ class _RegidencePageState extends State<RegidencePage> {
             icon: Stack(
               clipBehavior: Clip.none,
               children: <Widget>[
-                Icon(Icons.messenger_outline),
+                const Icon(Icons.messenger_outline),
                 Positioned(
                   top: -5,
                   right: -5,
                   child: Container(
-                    padding: EdgeInsets.all(2),
+                    padding: const EdgeInsets.all(2),
                     decoration: BoxDecoration(
                       color: Colors.red,
                       borderRadius: BorderRadius.circular(9),
                     ),
-                    constraints: BoxConstraints(
+                    constraints: const BoxConstraints(
                       minWidth: 18,
                       minHeight: 18,
                     ),
-                    child: Text(
+                    child: const Text(
                       '1',
                       style: TextStyle(
                         color: Colors.white,
@@ -130,7 +128,7 @@ class _RegidencePageState extends State<RegidencePage> {
             ),
             label: 'メッセージ',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(Icons.person),
             label: 'マイページ',
           ),
@@ -145,8 +143,8 @@ class _RegidencePageState extends State<RegidencePage> {
         selectedChoice = choice;
       }),
       style: ButtonStyle(
-        minimumSize: MaterialStateProperty.all(Size(100, 40)),
-        padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+        minimumSize: MaterialStateProperty.all(const Size(100, 40)),
+        padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
       ),
       child: Text(
         text,
@@ -170,8 +168,8 @@ class _RegidencePageState extends State<RegidencePage> {
             selectedChoice = choice;
           }),
           style: ButtonStyle(
-            minimumSize: MaterialStateProperty.all(Size(100, 40)),
-            padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+            minimumSize: MaterialStateProperty.all(const Size(100, 40)),
+            padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
           ),
           child: Text(
             text,
@@ -186,18 +184,18 @@ class _RegidencePageState extends State<RegidencePage> {
           right: 0,
           top: 2,
           child: Container(
-            padding: EdgeInsets.all(1),
+            padding: const EdgeInsets.all(1),
             decoration: BoxDecoration(
               color: Colors.red,
               borderRadius: BorderRadius.circular(9),
             ),
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               minWidth: 18,
               minHeight: 18,
             ),
             child: Text(
               notificationCount,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -211,14 +209,14 @@ class _RegidencePageState extends State<RegidencePage> {
   }
 }
 
-class recommend extends StatefulWidget {
-  const recommend({Key? key}) : super(key: key);
+class Recommend extends StatefulWidget {
+  const Recommend({Key? key}) : super(key: key);
 
   @override
-  State<recommend> createState() => _recommendState();
+  State<Recommend> createState() => _RecommendState();
 }
 
-class _recommendState extends State<recommend> {
+class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -234,38 +232,38 @@ class _recommendState extends State<recommend> {
           children: [
             Row(
               children: [
-                Text(
+                const Text(
                   '  カウルのおすすめ',
                   style: TextStyle(fontSize: 15),
                   overflow: TextOverflow.ellipsis,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
+                const Padding(
+                  padding: EdgeInsets.all(8.0),
                   child: Text(
                     '新着3件',
                     style: TextStyle(fontSize: 15, color: Colors.red),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 TextButton(
-                  child: Text(
-                    '編集',
-                    style: TextStyle(color: Colors.teal),
-                  ),
                   onPressed: () {},
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    minimumSize: Size(0, 0),
+                    minimumSize: const Size(0, 0),
+                  ),
+                  child: const Text(
+                    '編集',
+                    style: TextStyle(color: Colors.teal),
                   ),
                 ),
                 IconButton(
                   onPressed: () {},
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.edit,
                     color: Colors.teal,
                   ),
-                  padding: EdgeInsets.all(0),
-                  constraints: BoxConstraints(),
+                  padding: const EdgeInsets.all(0),
+                  constraints: const BoxConstraints(),
                 ),
               ],
             ),
@@ -274,7 +272,7 @@ class _recommendState extends State<recommend> {
               child: Container(
                 width: 400,
                 color: Colors.grey.withOpacity(0.1),
-                child: Column(
+                child: const Column(
                   mainAxisSize: MainAxisSize.min, // Columnのサイズを子に合わせる
                   children: [
                     Row(
@@ -324,14 +322,14 @@ class _recommendState extends State<recommend> {
   }
 }
 
-class houseDetail extends StatefulWidget {
-  const houseDetail({Key? key}) : super(key: key);
+class HouseDetail extends StatefulWidget {
+  const HouseDetail({Key? key}) : super(key: key);
 
   @override
-  State<houseDetail> createState() => _houseDetailState();
+  State<HouseDetail> createState() => _HouseDetailState();
 }
 
-class _houseDetailState extends State<houseDetail> {
+class _HouseDetailState extends State<HouseDetail> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -356,8 +354,8 @@ class _houseDetailState extends State<houseDetail> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -369,8 +367,8 @@ class _houseDetailState extends State<houseDetail> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -384,8 +382,8 @@ class _houseDetailState extends State<houseDetail> {
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
                   Icon(Icons.train, size: 15),
@@ -400,8 +398,8 @@ class _houseDetailState extends State<houseDetail> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
                   Icon(Icons.menu, size: 15),
@@ -416,8 +414,8 @@ class _houseDetailState extends State<houseDetail> {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            const Padding(
+              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
                   Icon(Icons.house_siding_sharp, size: 15),
@@ -445,7 +443,7 @@ class _houseDetailState extends State<houseDetail> {
                       child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Colors.grey,
                             width: 1,
                           ),
@@ -454,11 +452,11 @@ class _houseDetailState extends State<houseDetail> {
                           ),
                           elevation: 0,
                         ),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.restore_from_trash,
                           color: Colors.grey,
                         ),
-                        label: Text(
+                        label: const Text(
                           '興味なし',
                           style: TextStyle(
                             color: Colors.black,
@@ -476,7 +474,7 @@ class _houseDetailState extends State<houseDetail> {
                       child: ElevatedButton.icon(
                         style: ElevatedButton.styleFrom(
                           backgroundColor: Colors.white,
-                          side: BorderSide(
+                          side: const BorderSide(
                             color: Colors.grey,
                             width: 1,
                           ),
@@ -485,11 +483,11 @@ class _houseDetailState extends State<houseDetail> {
                           ),
                           elevation: 0,
                         ),
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.favorite_border,
                           color: Colors.grey,
                         ),
-                        label: Text(
+                        label: const Text(
                           'お気に入り',
                           style: TextStyle(
                             color: Colors.black,
