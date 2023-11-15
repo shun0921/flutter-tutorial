@@ -121,8 +121,8 @@ class _YoutubePageState extends State<YoutubePage> {
                           const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         childAspectRatio: 3.2,
-                        mainAxisSpacing: 8.0,
-                        crossAxisSpacing: 12.0,
+                        mainAxisSpacing: 8,
+                        crossAxisSpacing: 12,
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         List<CustomButton> buttons = [
@@ -161,7 +161,7 @@ class _YoutubePageState extends State<YoutubePage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.all(20.0),
-                      child: const Text("急上昇動画",
+                      child: Text("急上昇動画",
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
                   ],
@@ -269,10 +269,10 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 10,
-      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 1.0),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
       decoration: BoxDecoration(
         color: color,
-        borderRadius: BorderRadius.circular(5.0),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: Row(
         mainAxisSize: MainAxisSize.min,

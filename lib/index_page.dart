@@ -9,44 +9,47 @@ class IndexPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Center(
-            child: ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BuildingLayoutPage()),
-                  );
-                },
-                child: const Text('Tutorial1')),
-          ),
-          Center(
-            child: ElevatedButton(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
+                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
-                      builder: (context) => const AnimationPage()),
+                    builder: (context) => const BuildingLayoutPage(),
+                  ),
+                );
+              },
+              child: const Text('Tutorial1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // ignore: lines_longer_than_80_chars
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const AnimationPage(),
+                  ),
                 );
               },
               child: const Text('Tutorial1-1'),
             ),
-          ),
-          Center(
-            child: ElevatedButton(
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
+                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(builder: (context) => const YoutubePage()),
                 );
               },
               child: const Text('YouTubeボタン'),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
