@@ -1,7 +1,71 @@
 import 'package:flutter/material.dart';
 
-class Mercari extends StatelessWidget {
+class ItemDetail {
+  final String imageUrl;
+  final String title;
+  final String price;
+  final String watch;
+
+  ItemDetail({
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.watch,
+  });
+}
+
+class Mercari extends StatefulWidget {
   const Mercari({Key? key}) : super(key: key);
+
+  @override
+  State<Mercari> createState() => _mercariState();
+}
+
+class _mercariState extends State<Mercari> {
+  final List<ItemDetail> _itemData = [
+    ItemDetail(
+      imageUrl:
+          'https://tokyobike.com/wp-content/uploads/2022/04/thu_leger_coalgrey-730x487.jpg',
+      title: 'TOKYO BIKE',
+      price: '¥2,8000',
+      watch: '5人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://tshop.r10s.jp/magcruise/cabinet/magride/thumbnail186.jpg',
+      title: '子供用ヘルメット',
+      price: '¥280',
+      watch: '12人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://jp.images-monotaro.com/Monotaro3/pi/full/mono24923476-230405-02.jpg',
+      title: 'ヘルメット',
+      price: '¥2,800',
+      watch: '1人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +80,8 @@ class Mercari extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(children: [
-        Column(
+      body: SingleChildScrollView(
+        child: Column(
           children: [
             const Padding(
               padding: EdgeInsets.all(8.0),
@@ -62,14 +126,16 @@ class Mercari extends StatelessWidget {
                 ),
               ),
             ),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
+            ListView.builder(
+                itemCount: _itemData.length,
+                shrinkWrap: true,
+                physics: NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext cotext, int index) {
+                  return ItemList(itemDetail: _itemData[index]);
+                }),
           ],
         ),
-      ]),
+      ),
     );
   }
 }
@@ -188,14 +254,10 @@ class Shortcut extends StatelessWidget {
   }
 }
 
-class ItemList extends StatefulWidget {
-  const ItemList({Key? key}) : super(key: key);
+class ItemList extends StatelessWidget {
+  final ItemDetail itemDetail;
+  const ItemList({Key? key, required this.itemDetail}) : super(key: key);
 
-  @override
-  State<ItemList> createState() => _itemlistState();
-}
-
-class _itemlistState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -206,19 +268,19 @@ class _itemlistState extends State<ItemList> {
       ),
       child: ListTile(
         leading: Image.network(
-          'https://sakidorico.s3.amazonaws.com/wp/wp-content/uploads/2023/02/63f470cb198fe-750x563.jpg',
+          itemDetail.imageUrl,
           width: 100,
         ),
         trailing: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 16),
+            backgroundColor: Colors.red,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(5),
               ),
             ),
-            primary: Colors.red,
           ),
           child: const Text(
             '出品する',
@@ -229,25 +291,25 @@ class _itemlistState extends State<ItemList> {
             ),
           ),
         ),
-        title: const Column(
+        title: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'NikonD5500',
+              itemDetail.title,
               style: TextStyle(
                 fontSize: 15,
               ),
             ),
             Text(
-              '¥51,000',
+              itemDetail.price,
               style: TextStyle(
                 fontSize: 15,
               ),
             ),
           ],
         ),
-        subtitle: const Row(
+        subtitle: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             Icon(
@@ -256,7 +318,7 @@ class _itemlistState extends State<ItemList> {
               color: Colors.blue,
             ),
             Text(
-              ('446人が探しています'),
+              itemDetail.watch,
             ),
           ],
         ),
