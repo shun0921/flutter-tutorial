@@ -146,7 +146,7 @@ class _YoutubePageState extends State<YoutubePage> {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(20.0),
+                      padding: const EdgeInsets.all(20),
                       child: const Text("急上昇動画",
                           style: TextStyle(color: Colors.white, fontSize: 20)),
                     ),
