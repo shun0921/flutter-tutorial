@@ -50,6 +50,28 @@ class IndexPage extends StatelessWidget {
               },
               child: const Text('YouTubeボタン'),
             ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const RegidencePage(),
+                  ),
+                );
+              },
+              child: const Text('Regidence'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(builder: (context) => const Mercari()),
+                );
+              },
+              child: const Text('Mercari'),
+            ),
           ],
         ),
       ),

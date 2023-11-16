@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Mercari extends StatelessWidget {
-  const Mercari({Key? key}) : super(key: key);
+  const Mercari({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,79 +16,82 @@ class Mercari extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(children: [
-        Column(
-          children: [
-            const Padding(
-              padding: EdgeInsets.all(8.0),
-              child: Shortcut(),
-            ),
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
+      body: ListView(
+        children: [
+          Column(
+            children: [
+              const Padding(
+                padding: EdgeInsets.all(8),
+                child: Shortcut(),
+              ),
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
+                  ),
+                ),
+                child: ListTile(
+                  title: const Text(
+                    '売れやすい持ち物',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16,
+                    ),
+                  ),
+                  subtitle: const Text(
+                    '使わないモノを出品してみよう！',
+                    style: TextStyle(
+                      fontSize: 13,
+                    ),
+                  ),
+                  trailing: TextButton(
+                    onPressed: () {},
+                    child: const Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          'すべて見る',
+                          style: TextStyle(color: Colors.blue),
+                        ),
+                        Icon(
+                          Icons.arrow_forward_ios,
+                          size: 16,
+                          color: Colors.blue,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              child: ListTile(
-                title: const Text(
-                  '売れやすい持ち物',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 16,
-                  ),
-                ),
-                subtitle: const Text(
-                  '使わないモノを出品してみよう！',
-                  style: TextStyle(
-                    fontSize: 13,
-                  ),
-                ),
-                trailing: TextButton(
-                  onPressed: () {},
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text(
-                        'すべて見る',
-                        style: TextStyle(color: Colors.blue),
-                      ),
-                      Icon(
-                        Icons.arrow_forward_ios,
-                        size: 16.0,
-                        color: Colors.blue,
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
-            const ItemList(),
-          ],
-        ),
-      ]),
+              const ItemList(),
+              const ItemList(),
+              const ItemList(),
+              const ItemList(),
+              const ItemList(),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
 
 class Shortcut extends StatelessWidget {
-  const Shortcut({Key? key}) : super(key: key);
+  const Shortcut({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.grey.withOpacity(0.2),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Image.network(
-                'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png'),
+              'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png',
+            ),
             const Padding(
-              padding: EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(14),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -180,7 +183,7 @@ class Shortcut extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -189,16 +192,16 @@ class Shortcut extends StatelessWidget {
 }
 
 class ItemList extends StatefulWidget {
-  const ItemList({Key? key}) : super(key: key);
+  const ItemList({super.key});
 
   @override
-  State<ItemList> createState() => _itemlistState();
+  State<ItemList> createState() => _ItemlistState();
 }
 
-class _itemlistState extends State<ItemList> {
+class _ItemlistState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
@@ -213,12 +216,12 @@ class _itemlistState extends State<ItemList> {
           onPressed: () {},
           style: ElevatedButton.styleFrom(
             padding: const EdgeInsets.symmetric(horizontal: 16),
+            backgroundColor: Colors.red,
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(
                 Radius.circular(5),
               ),
             ),
-            primary: Colors.red,
           ),
           child: const Text(
             '出品する',
@@ -256,11 +259,11 @@ class _itemlistState extends State<ItemList> {
               color: Colors.blue,
             ),
             Text(
-              ('446人が探しています'),
+              '446人が探しています',
             ),
           ],
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       ),
     );
   }
