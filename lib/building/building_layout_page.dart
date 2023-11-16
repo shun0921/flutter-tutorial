@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BuildingLayoutPage extends StatelessWidget {
-  const BuildingLayoutPage({Key? key}) : super(key: key);
+  const BuildingLayoutPage({super.key});
 
   @override
   Widget build(BuildContext context) {
