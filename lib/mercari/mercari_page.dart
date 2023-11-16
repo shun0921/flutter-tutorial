@@ -1,7 +1,70 @@
 import 'package:flutter/material.dart';
 
-class Mercari extends StatelessWidget {
+class ItemDetail {
+  ItemDetail({
+    required this.imageUrl,
+    required this.title,
+    required this.price,
+    required this.watch,
+  });
+  final String imageUrl;
+  final String title;
+  final String price;
+  final String watch;
+}
+
+class Mercari extends StatefulWidget {
   const Mercari({super.key});
+
+  @override
+  State<Mercari> createState() => _MercariState();
+}
+
+class _MercariState extends State<Mercari> {
+  final List<ItemDetail> _itemData = [
+    ItemDetail(
+      imageUrl:
+          'https://tokyobike.com/wp-content/uploads/2022/04/thu_leger_coalgrey-730x487.jpg',
+      title: 'TOKYO BIKE',
+      price: '¥2,8000',
+      watch: '5人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://tshop.r10s.jp/magcruise/cabinet/magride/thumbnail186.jpg',
+      title: '子供用ヘルメット',
+      price: '¥280',
+      watch: '12人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://jp.images-monotaro.com/Monotaro3/pi/full/mono24923476-230405-02.jpg',
+      title: 'ヘルメット',
+      price: '¥2,800',
+      watch: '1人が探してます',
+    ),
+    ItemDetail(
+      imageUrl:
+          'https://kddi-h.assetsadobe3.com/is/image/content/dam/au-com/extlib/iphone/product/iphone-15/images/slider/iPhone_15_Blue_01.jpg?scl=1&qlt=90',
+      title: 'iphone15plus',
+      price: '¥12,8000',
+      watch: '1000人が探してます',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -16,61 +79,62 @@ class Mercari extends StatelessWidget {
           ),
         ),
       ),
-      body: ListView(
-        children: [
-          Column(
-            children: [
-              const Padding(
-                padding: EdgeInsets.all(8),
-                child: Shortcut(),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(8),
+              child: Shortcut(),
+            ),
+            DecoratedBox(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
+                ),
               ),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  border: Border(
-                    bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
+              child: ListTile(
+                title: const Text(
+                  '売れやすい持ち物',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
                   ),
                 ),
-                child: ListTile(
-                  title: const Text(
-                    '売れやすい持ち物',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                    ),
+                subtitle: const Text(
+                  '使わないモノを出品してみよう！',
+                  style: TextStyle(
+                    fontSize: 13,
                   ),
-                  subtitle: const Text(
-                    '使わないモノを出品してみよう！',
-                    style: TextStyle(
-                      fontSize: 13,
-                    ),
-                  ),
-                  trailing: TextButton(
-                    onPressed: () {},
-                    child: const Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'すべて見る',
-                          style: TextStyle(color: Colors.blue),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.blue,
-                        ),
-                      ],
-                    ),
+                ),
+                trailing: TextButton(
+                  onPressed: () {},
+                  child: const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        'すべて見る',
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios,
+                        size: 16,
+                        color: Colors.blue,
+                      ),
+                    ],
                   ),
                 ),
               ),
-              const ItemList(),
-              const ItemList(),
-              const ItemList(),
-              const ItemList(),
-              const ItemList(),
-            ],
-          ),
-        ],
+            ),
+            ListView.builder(
+              itemCount: _itemData.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext cotext, int index) {
+                return ItemList(itemDetail: _itemData[index]);
+              },
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -191,14 +255,10 @@ class Shortcut extends StatelessWidget {
   }
 }
 
-class ItemList extends StatefulWidget {
-  const ItemList({super.key});
+class ItemList extends StatelessWidget {
+  const ItemList({super.key, required this.itemDetail});
+  final ItemDetail itemDetail;
 
-  @override
-  State<ItemList> createState() => _ItemlistState();
-}
-
-class _ItemlistState extends State<ItemList> {
   @override
   Widget build(BuildContext context) {
     return DecoratedBox(
@@ -209,7 +269,7 @@ class _ItemlistState extends State<ItemList> {
       ),
       child: ListTile(
         leading: Image.network(
-          'https://sakidorico.s3.amazonaws.com/wp/wp-content/uploads/2023/02/63f470cb198fe-750x563.jpg',
+          itemDetail.imageUrl,
           width: 100,
         ),
         trailing: ElevatedButton(
@@ -232,34 +292,34 @@ class _ItemlistState extends State<ItemList> {
             ),
           ),
         ),
-        title: const Column(
+        title: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'NikonD5500',
-              style: TextStyle(
+              itemDetail.title,
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
             Text(
-              '¥51,000',
-              style: TextStyle(
+              itemDetail.price,
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
           ],
         ),
-        subtitle: const Row(
+        subtitle: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.local_fire_department,
               size: 15,
               color: Colors.blue,
             ),
             Text(
-              '446人が探しています',
+              itemDetail.watch,
             ),
           ],
         ),
