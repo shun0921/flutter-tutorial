@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 
 class MovieInfo {
@@ -26,18 +28,40 @@ class _YoutubePageState extends State<YoutubePage> {
 
   final List<CustomButton> buttons = [
     const CustomButton(
-        icon: Icons.local_fire_department, label: "急上昇", color: Colors.red),
-    const CustomButton(icon: Icons.music_note, label: "音楽", color: Colors.teal),
+        icon: Icons.local_fire_department,
+      label: '急上昇',
+      color: Colors.red,
+    ),
     const CustomButton(
-        icon: Icons.gamepad_rounded, label: "ゲーム", color: Colors.pinkAccent),
+      icon: Icons.music_note,
+      label: '音楽',
+      color: Colors.teal,
+    ),
     const CustomButton(
-        icon: Icons.menu_sharp, label: "ニュース", color: Colors.indigo),
+        icon: Icons.gamepad_rounded,
+      label: 'ゲーム',
+      color: Colors.pinkAccent,
+    ),
     const CustomButton(
-        icon: Icons.menu_sharp, label: "学び", color: Colors.green),
+      icon: Icons.menu_sharp,
+      label: 'ニュース',
+      color: Colors.indigo,
+    ),
     const CustomButton(
-        icon: Icons.live_tv, label: "ライブ", color: Colors.deepOrangeAccent),
+        icon: Icons.menu_sharp,
+      label: '学び',
+      color: Colors.green,
+    ),
     const CustomButton(
-        icon: Icons.play_circle_fill, label: "スポーツ", color: Colors.cyan),
+        icon: Icons.live_tv,
+      label: 'ライブ',
+      color: Colors.deepOrangeAccent,
+    ),
+    const CustomButton(
+        icon: Icons.play_circle_fill,
+      label: 'スポーツ',
+      color: Colors.cyan,
+    ),
   ];
 
   final List<MovieInfo> _movieData = [
@@ -50,11 +74,11 @@ class _YoutubePageState extends State<YoutubePage> {
     ),
     MovieInfo(
         imagePath:
-            'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
-        iconPath: 'Icons.circle',
-        title: 'musicmusicmusic',
-        subTitle: 'this is Eminem'),
-  ];
+          'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
+      iconPath: 'Icons.circle',
+      title: 'musicmusicmusic',
+      subTitle: 'this is Eminem',
+    ),
 
   @override
   Widget build(BuildContext context) {
@@ -106,11 +130,13 @@ class _YoutubePageState extends State<YoutubePage> {
                 Text(
                   'T',
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ],
             ),
-          )
+          ),
         ],
         backgroundColor: Colors.black.withOpacity(0.8),
         centerTitle: false,
@@ -147,8 +173,10 @@ class _YoutubePageState extends State<YoutubePage> {
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: const EdgeInsets.all(20),
-                      child: const Text("急上昇動画",
-                          style: TextStyle(color: Colors.white, fontSize: 20)),
+                      child: const Text(
+                        '急上昇動画',
+                        style: TextStyle(color: Colors.white, fontSize: 20),
+                      ),
                     ),
                   ],
                 ),
