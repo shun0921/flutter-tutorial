@@ -28,7 +28,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
   final List<CustomButton> buttons = [
     const CustomButton(
-        icon: Icons.local_fire_department,
+      icon: Icons.local_fire_department,
       label: '急上昇',
       color: Colors.red,
     ),
@@ -38,7 +38,7 @@ class _YoutubePageState extends State<YoutubePage> {
       color: Colors.teal,
     ),
     const CustomButton(
-        icon: Icons.gamepad_rounded,
+      icon: Icons.gamepad_rounded,
       label: 'ゲーム',
       color: Colors.pinkAccent,
     ),
@@ -48,17 +48,17 @@ class _YoutubePageState extends State<YoutubePage> {
       color: Colors.indigo,
     ),
     const CustomButton(
-        icon: Icons.menu_sharp,
+      icon: Icons.menu_sharp,
       label: '学び',
       color: Colors.green,
     ),
     const CustomButton(
-        icon: Icons.live_tv,
+      icon: Icons.live_tv,
       label: 'ライブ',
       color: Colors.deepOrangeAccent,
     ),
     const CustomButton(
-        icon: Icons.play_circle_fill,
+      icon: Icons.play_circle_fill,
       label: 'スポーツ',
       color: Colors.cyan,
     ),
@@ -73,12 +73,13 @@ class _YoutubePageState extends State<YoutubePage> {
       subTitle: '嵐の動画のはず',
     ),
     MovieInfo(
-        imagePath:
+      imagePath:
           'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
       iconPath: 'Icons.circle',
       title: 'musicmusicmusic',
       subTitle: 'this is Eminem',
     ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +131,7 @@ class _YoutubePageState extends State<YoutubePage> {
                 Text(
                   'T',
                   style: TextStyle(
-                      color: Colors.white,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
