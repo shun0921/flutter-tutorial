@@ -20,25 +20,31 @@ class IndexPage extends StatelessWidget {
                       builder: (context) => const BuildingLayoutPage()),
                 );
               },
-              child: const Text('Tutorial1')),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const AnimationPage()),
-              );
-            },
-            child: const Text('Tutorial1-1'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => const YoutubePage()),
-              );
-            },
-            child: const Text('YouTubeボタン'),
-          ),
+              child: const Text('Tutorial1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // ignore: lines_longer_than_80_chars
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(
+                    builder: (context) => const AnimationPage(),
+                  ),
+                );
+              },
+              child: const Text('Tutorial1-1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  // ignore: inference_failure_on_instance_creation
+                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                );
+              },
+              child: const Text('YouTubeボタン'),
+            ),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
