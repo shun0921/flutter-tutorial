@@ -3,16 +3,17 @@
 import 'package:flutter/material.dart';
 
 class MovieInfo {
+  final String imagePath;
+  final String iconPath;
+  final String title;
+  final String subTitle;
+
   MovieInfo({
     required this.imagePath,
     required this.iconPath,
     required this.title,
     required this.subTitle,
   });
-  final String imagePath;
-  final String iconPath;
-  final String title;
-  final String subTitle;
 }
 
 class YoutubePage extends StatefulWidget {
@@ -62,7 +63,6 @@ class _YoutubePageState extends State<YoutubePage> {
       color: Colors.cyan,
     ),
   ];
-
   final List<MovieInfo> _movieData = [
     MovieInfo(
       imagePath:
@@ -72,12 +72,11 @@ class _YoutubePageState extends State<YoutubePage> {
       subTitle: '嵐の動画のはず',
     ),
     MovieInfo(
-      imagePath:
-          'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
-      iconPath: 'Icons.circle',
-      title: 'musicmusicmusic',
-      subTitle: 'this is Eminem',
-    ),
+        imagePath:
+            'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
+        iconPath: 'Icons.circle',
+        title: 'musicmusicmusic',
+        subTitle: 'this is Eminem'),
   ];
 
   @override
@@ -130,7 +129,7 @@ class _YoutubePageState extends State<YoutubePage> {
                 Text(
                   'T',
                   style: TextStyle(
-                    color: Colors.white,
+                      color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -166,7 +165,8 @@ class _YoutubePageState extends State<YoutubePage> {
                         mainAxisSpacing: 8,
                         crossAxisSpacing: 12,
                       ),
-                      itemBuilder: (BuildContext context, int index) {
+                      itemBuilder: (BuildContext context, int index) 
+                      {
                         return buttons[index];
                       },
                     ),
@@ -269,15 +269,16 @@ class _YoutubePageState extends State<YoutubePage> {
 
 class CustomButton extends StatelessWidget {
   
+  final IconData icon;
+  final String label;
+  final Color color;
+
   const CustomButton({
     super.key,
     required this.icon,
     required this.label,
     required this.color,
   });
-  final IconData icon;
-  final String label;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
