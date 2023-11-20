@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tutorial/index_page.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_tutorial/qiita/view/list_view.dart';
 
 void main() {
-  runApp(const MyApp());
+  const app = MyApp();
+  const scope = ProviderScope(child: app);
+  runApp(scope);
 }
 
 class MyApp extends StatelessWidget {
@@ -10,13 +13,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
       ),
-      home: IndexPage(),
+      home: const HomePage(),
     );
   }
 }
