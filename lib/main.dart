@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tutorial/qiita/view/list_view.dart';
+import 'package:flutter_tutorial/qiita/view/home_page.dart';
 
 void main() {
   const app = MyApp();
