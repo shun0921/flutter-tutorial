@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
-<<<<<<< Updated upstream
-import 'package:flutter_tutorial/regidence/regidence_page.dart';
-=======
 import 'package:flutter_tutorial/regidence/view/regidence_page.dart';
->>>>>>> Stashed changes
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
@@ -35,37 +31,6 @@ class IndexPage extends StatelessWidget {
                       builder: (context) => const AnimationPage()),
                 );
               },
-<<<<<<< Updated upstream
-              child: Text('Tutorial1')),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AnimationPage()),
-              );
-            },
-            child: Text('Tutorial1-1'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => YoutubePage()),
-              );
-            },
-            child: Text('YouTubeボタン'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => RegidencePage()),
-              );
-            },
-            child: Text('Regidence'),
-          ),
-        ],
-=======
               child: const Text('Tutorial1-1'),
             ),
             ElevatedButton(
@@ -89,7 +54,6 @@ class IndexPage extends StatelessWidget {
             ),
           ],
         ),
->>>>>>> Stashed changes
       ),
     );
   }
