@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars
-
 import 'package:flutter/material.dart';
 
 class MovieInfo {
@@ -268,7 +266,6 @@ class _YoutubePageState extends State<YoutubePage> {
 }
 
 class CustomButton extends StatelessWidget {
-  
   const CustomButton({
     super.key,
     required this.icon,

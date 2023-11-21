@@ -1,5 +1,3 @@
-// ignore_for_file: use_named_constants
-
 import 'package:flutter/material.dart';
 
 enum Choice { recommend, refurbished }
