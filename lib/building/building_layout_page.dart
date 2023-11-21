@@ -1,5 +1,3 @@
-// ignore_for_file: lines_longer_than_80_chars, use_named_constants
-
 import 'package:flutter/material.dart';
 
 class BuildingLayoutPage extends StatelessWidget {

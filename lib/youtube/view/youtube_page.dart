@@ -1,19 +1,7 @@
-// ignore_for_file: lines_longer_than_80_chars
-
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-
-class MovieInfo {
-  MovieInfo({
-    required this.imagePath,
-    required this.iconPath,
-    required this.title,
-    required this.subTitle,
-  });
-  final String imagePath;
-  final String iconPath;
-  final String title;
-  final String subTitle;
-}
+import 'package:flutter_tutorial/youtube/api/api.dart';
+import 'package:flutter_tutorial/youtube/model/movie.dart';
 
 class YoutubePage extends StatefulWidget {
   const YoutubePage({super.key});
@@ -24,60 +12,50 @@ class YoutubePage extends StatefulWidget {
 
 class _YoutubePageState extends State<YoutubePage> {
   int _selectedIndex = 0;
+  List<Movie> _movies = [];
+  bool isLoading = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _fetchMovies();
+  }
+
+  Future<void> _fetchMovies() async {
+    setState(() {
+      isLoading = true; // ローディング開始
+    });
+
+    final dio = Dio();
+    final api = Api(dio);
+
+    try {
+      final movies = await api.getMovies();
+      setState(() {
+        _movies = movies;
+        isLoading = false; // ローディング終了
+      });
+    } catch (e) {
+      setState(() {
+        isLoading = false; // エラー時もローディング終了
+      });
+    }
+  }
 
   final List<CustomButton> buttons = [
     const CustomButton(
-      icon: Icons.local_fire_department,
-      label: '急上昇',
-      color: Colors.red,
-    ),
+        icon: Icons.local_fire_department, label: "急上昇", color: Colors.red),
+    const CustomButton(icon: Icons.music_note, label: "音楽", color: Colors.teal),
     const CustomButton(
-      icon: Icons.music_note,
-      label: '音楽',
-      color: Colors.teal,
-    ),
+        icon: Icons.gamepad_rounded, label: "ゲーム", color: Colors.pinkAccent),
     const CustomButton(
-      icon: Icons.gamepad_rounded,
-      label: 'ゲーム',
-      color: Colors.pinkAccent,
-    ),
+        icon: Icons.menu_sharp, label: "ニュース", color: Colors.indigo),
     const CustomButton(
-      icon: Icons.menu_sharp,
-      label: 'ニュース',
-      color: Colors.indigo,
-    ),
+        icon: Icons.menu_sharp, label: "学び", color: Colors.green),
     const CustomButton(
-      icon: Icons.menu_sharp,
-      label: '学び',
-      color: Colors.green,
-    ),
+        icon: Icons.live_tv, label: "ライブ", color: Colors.deepOrangeAccent),
     const CustomButton(
-      icon: Icons.live_tv,
-      label: 'ライブ',
-      color: Colors.deepOrangeAccent,
-    ),
-    const CustomButton(
-      icon: Icons.play_circle_fill,
-      label: 'スポーツ',
-      color: Colors.cyan,
-    ),
-  ];
-
-  final List<MovieInfo> _movieData = [
-    MovieInfo(
-      imagePath:
-          'https://cgsc.info/cgsc2020/wp-content/uploads/2020/12/image.png',
-      iconPath: 'Icons.circle',
-      title: 'testtesttesttesttesttest',
-      subTitle: '嵐の動画のはず',
-    ),
-    MovieInfo(
-      imagePath:
-          'https://www.chipublib.org/wp-content/uploads/sites/3/2022/09/36079964425_7b3042d5e1_k.jpg',
-      iconPath: 'Icons.circle',
-      title: 'musicmusicmusic',
-      subTitle: 'this is Eminem',
-    ),
+        icon: Icons.play_circle_fill, label: "スポーツ", color: Colors.cyan),
   ];
 
   @override
@@ -146,84 +124,81 @@ class _YoutubePageState extends State<YoutubePage> {
           size: 30,
         ),
       ),
-      body: ColoredBox(
-        color: Colors.black,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ColoredBox(
-                color: Colors.black87,
+      body: isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : ColoredBox(
+              color: Colors.black,
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
-                    GridView.builder(
+                    ColoredBox(
+                      color: Colors.black87,
+                      child: Column(
+                        children: [
+                          GridView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: buttons.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 2,
+                              childAspectRatio: 3.2,
+                              mainAxisSpacing: 8.0,
+                              crossAxisSpacing: 12.0,
+                            ),
+                            itemBuilder: (BuildContext context, int index) {
+                              return buttons[index];
+                            },
+                          ),
+                          Container(
+                            alignment: Alignment.centerLeft,
+                            padding: const EdgeInsets.all(20.0),
+                            child: const Text("急上昇動画",
+                                style: TextStyle(
+                                    color: Colors.white, fontSize: 20)),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: buttons.length,
-                      gridDelegate:
-                          const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        childAspectRatio: 3.2,
-                        mainAxisSpacing: 8,
-                        crossAxisSpacing: 12,
-                      ),
+                      itemCount: _movies.length,
                       itemBuilder: (BuildContext context, int index) {
-                        return buttons[index];
+                        final movie = _movies[index];
+                        return Column(
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              height: 180,
+                              child: Image.network(
+                                movie.imagePath,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            ListTile(
+                              title: Text(
+                                movie.title,
+                                style: const TextStyle(color: Colors.white),
+                              ),
+                              subtitle: Text(
+                                movie.channelName,
+                                style: const TextStyle(color: Colors.white54),
+                              ),
+                              leading: const Icon(
+                                Icons.circle,
+                                size: 60,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ],
+                        );
                       },
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: const EdgeInsets.all(20),
-                      child: const Text(
-                        '急上昇動画',
-                        style: TextStyle(color: Colors.white, fontSize: 20),
-                      ),
                     ),
                   ],
                 ),
               ),
-              ListView.builder(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemCount: _movieData.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Column(
-                    children: [
-                      SizedBox(
-                        width: double.infinity,
-                        height: 180,
-                        child: Image.network(
-                          _movieData[index].imagePath,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      ListTile(
-                        title: Text(
-                          _movieData[index].title,
-                          style: const TextStyle(color: Colors.white),
-                        ),
-                        subtitle: Text(
-                          _movieData[index].subTitle,
-                          style: const TextStyle(color: Colors.white54),
-                        ),
-                        leading: const Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            Icon(
-                              Icons.circle,
-                              size: 60,
-                              color: Colors.white,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+            ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         currentIndex: _selectedIndex,
