@@ -2,6 +2,24 @@ import 'package:flutter/material.dart';
 
 enum Choice { recommend, refurbished }
 
+class ResidenceInfo {
+  final List<String> imagePath;
+  final String buildingNamePath;
+  final String roomPrice;
+  final String nearStation;
+  final String roomSize;
+  final String buildingSize;
+
+  ResidenceInfo({
+    required this.imagePath,
+    required this.buildingNamePath,
+    required this.roomPrice,
+    required this.nearStation,
+    required this.roomSize,
+    required this.buildingSize,
+  });
+}
+
 class RegidencePage extends StatefulWidget {
   const RegidencePage({Key? key}) : super(key: key);
 
@@ -12,6 +30,31 @@ class RegidencePage extends StatefulWidget {
 class _RegidencePageState extends State<RegidencePage> {
   Choice selectedChoice = Choice.recommend;
   int _selectedIndex = 0;
+
+  final List<ResidenceInfo> _residenseData = [
+    ResidenceInfo(
+      imagePath: [
+        'https://d35omnrtvqomev.cloudfront.net/photo/article/article_part/image_path_1/528943/9e2e3a472ef6686b6d8425e0b56688.jpg',
+        'https://s3-ap-northeast-1.amazonaws.com/ietate/folders/16294/images/136670/large.jpg?1645431157',
+      ],
+      buildingNamePath: 'みなとみらいタワマン',
+      roomPrice: '9,800万円',
+      nearStation: 'みなとみらい駅 徒歩10分',
+      roomSize: '3LDK　南西向き',
+      buildingSize: '33階/35階建',
+    ),
+    ResidenceInfo(
+      imagePath: [
+        'https://www.lettuceclub.net/i/N1/1014211/10120852.jpg',
+        'https://www.madorizusakusei.com/images/case/case_2.jpg',
+      ],
+      buildingNamePath: 'アパート',
+      roomPrice: '1,800万円',
+      nearStation: '雑司ヶ谷 徒歩18分',
+      roomSize: '1LDK　南西向き',
+      buildingSize: '1階/2階建',
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -56,19 +99,20 @@ class _RegidencePageState extends State<RegidencePage> {
       ),
       body: Container(
         color: Colors.grey.withOpacity(0.2),
-        child: ListView(
-          children: const [
-            Padding(
+        child: Column(
+          children: [
+            const Padding(
               padding: EdgeInsets.all(5.0),
               child: Recommend(),
             ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: HouseDetail(),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: HouseDetail(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _residenseData.length,
+                itemBuilder: (BuildContext context, index) {
+                  return HouseDetailWidget(
+                      residenceInfo: _residenseData[index]);
+                },
+              ),
             ),
           ],
         ),
@@ -233,7 +277,7 @@ class _RecommendState extends State<Recommend> {
             Row(
               children: [
                 const Text(
-                  '  カウルのおすすめ',
+                  '  カウルのおすすめ', //スペースはあえてつけてます
                   style: TextStyle(fontSize: 15),
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -273,7 +317,7 @@ class _RecommendState extends State<Recommend> {
                 width: 400,
                 color: Colors.grey.withOpacity(0.1),
                 child: const Column(
-                  mainAxisSize: MainAxisSize.min, // Columnのサイズを子に合わせる
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Row(
                       children: [
@@ -322,14 +366,11 @@ class _RecommendState extends State<Recommend> {
   }
 }
 
-class HouseDetail extends StatefulWidget {
-  const HouseDetail({Key? key}) : super(key: key);
+class HouseDetailWidget extends StatelessWidget {
+  final ResidenceInfo residenceInfo;
+  const HouseDetailWidget({Key? key, required this.residenceInfo})
+      : super(key: key);
 
-  @override
-  State<HouseDetail> createState() => _HouseDetailState();
-}
-
-class _HouseDetailState extends State<HouseDetail> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -343,38 +384,34 @@ class _HouseDetailState extends State<HouseDetail> {
         child: Column(
           children: [
             Row(
-              children: [
-                Expanded(
-                  child: Image.network(
-                      'https://thumb.ac-illust.com/18/185fe60d543230116f69f3b41238a90d_t.jpeg'),
+              children: List.generate(
+                residenceInfo.imagePath.length,
+                (int imgIndex) => Expanded(
+                  child: Image.network(residenceInfo.imagePath[imgIndex]),
                 ),
-                Expanded(
-                  child: Image.network(
-                      'https://www.sakai-iin.com/_p/acre/25978/images/pc/smart_phone_8ec92575.jpg'),
-                ),
-              ],
+              ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Rising place川崎',
-                  style: TextStyle(
+                  residenceInfo.buildingNamePath,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '2,000万円',
+                  residenceInfo.roomPrice,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
@@ -382,48 +419,48 @@ class _HouseDetailState extends State<HouseDetail> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
-                  Icon(Icons.train, size: 15),
-                  SizedBox(width: 8),
+                  const Icon(Icons.train, size: 15),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '京急本線 京急川崎駅より 徒歩9分',
-                      style: TextStyle(fontSize: 12),
+                      residenceInfo.nearStation,
+                      style: const TextStyle(fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
-                  Icon(Icons.menu, size: 15),
-                  SizedBox(width: 8),
+                  const Icon(Icons.menu, size: 15),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '1k/ 21.24m2 南西向き',
-                      style: TextStyle(fontSize: 12),
+                      residenceInfo.roomSize,
+                      style: const TextStyle(fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
               child: Row(
                 children: [
-                  Icon(Icons.house_siding_sharp, size: 15),
-                  SizedBox(width: 8),
+                  const Icon(Icons.house_siding_sharp, size: 15),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '2階/15階建 築5年',
-                      style: TextStyle(fontSize: 12),
+                      residenceInfo.buildingSize,
+                      style: const TextStyle(fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
