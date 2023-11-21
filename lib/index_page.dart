@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+<<<<<<< Updated upstream
 import 'package:flutter_tutorial/regidence/regidence_page.dart';
+=======
+import 'package:flutter_tutorial/regidence/view/regidence_page.dart';
+>>>>>>> Stashed changes
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
@@ -10,16 +14,28 @@ class IndexPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BuildingLayoutPage()),
+                  );
+                },
+                child: const Text('Tutorial1')),
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const AnimationPage()),
                 );
               },
+<<<<<<< Updated upstream
               child: Text('Tutorial1')),
           ElevatedButton(
             onPressed: () {
@@ -49,6 +65,31 @@ class IndexPage extends StatelessWidget {
             child: Text('Regidence'),
           ),
         ],
+=======
+              child: const Text('Tutorial1-1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                );
+              },
+              child: const Text('YouTubeボタン'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const RegidencePage()),
+                );
+              },
+              child: const Text('Regidence'),
+            ),
+          ],
+        ),
+>>>>>>> Stashed changes
       ),
     );
   }
