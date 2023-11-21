@@ -19,7 +19,6 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
                     builder: (context) => const BuildingLayoutPage(),
                   ),
@@ -29,10 +28,8 @@ class IndexPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // ignore: lines_longer_than_80_chars
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
                     builder: (context) => const AnimationPage(),
                   ),
@@ -44,7 +41,6 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(builder: (context) => const YoutubePage()),
                 );
               },
@@ -54,7 +50,6 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
                     builder: (context) => const RegidencePage(),
                   ),
@@ -66,7 +61,6 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(builder: (context) => const Mercari()),
                 );
               },
