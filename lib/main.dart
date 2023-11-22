@@ -1,22 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/index_page.dart';
+import 'package:flutter_tutorial/todo_list/model/todos.dart';
 
 void main() {
-  runApp(const MyApp());
+  final database = MyDatabase();
+  runApp(MyApp(database: database));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final MyDatabase database;
+  const MyApp({
+    Key? key,
+    required this.database,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: IndexPage(),
+      theme: ThemeData(),
+      home: IndexPage(database: database),
     );
   }
 }
