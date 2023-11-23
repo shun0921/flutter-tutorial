@@ -26,56 +26,58 @@ class IndexPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => BuildingLayoutPage()),
+                        builder: (context) => const BuildingLayoutPage()),
                   );
                 },
-                child: Text('Tutorial1')),
+                child: const Text('Tutorial1')),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => AnimationPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const AnimationPage()),
                 );
               },
-              child: Text('Tutorial1-1'),
+              child: const Text('Tutorial1-1'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => YoutubePage()),
+                  MaterialPageRoute(builder: (context) => const YoutubePage()),
                 );
               },
-              child: Text('YouTubeボタン'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => RegidencePage()),
-                );
-              },
-              child: Text('Regidence'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => Mercari()),
-                );
-              },
-              child: Text('Mercari'),
+              child: const Text('YouTubeボタン'),
             ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TodoView(database: database),
+                      builder: (context) => const RegidencePage()),
+                );
+              },
+              child: const Text('Regidence'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Mercari()),
+                );
+              },
+              child: const Text('Mercari'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const TodoView(),
                   ),
                 );
               },
-              child: Text('Todo'),
+              child: const Text('Todo'),
             ),
           ],
         ),

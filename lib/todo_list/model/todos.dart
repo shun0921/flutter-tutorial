@@ -3,12 +3,12 @@ import 'dart:io';
 
 import 'package:drift/drift.dart';
 import 'package:drift/native.dart';
+import 'package:flutter_tutorial/todo_list/model/todo_model.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
 
 part 'todos.g.dart';
 
-@DataClassName('Todo')
 class Todos extends Table {
   IntColumn get id => integer().autoIncrement()();
   TextColumn get title => text()();
@@ -23,13 +23,36 @@ class MyDatabase extends _$MyDatabase {
   @override
   int get schemaVersion => 1;
 
-  Future<int> addTodo(TodosCompanion todo) {
+  Future<int> addTodo(TodoModel model) {
+    final todo = TodosCompanion(
+      title: Value(model.title),
+      subtitle: Value(model.subtitle),
+      date: Value(model.date),
+    );
     return into(todos).insert(todo);
   }
 
-  Future<List<Todo>> get allTodoEntries => select(todos).get();
-  Stream<List<Todo>> watchEntries() {
-    return select(todos).watch();
+  Future<List<TodoModel>> get allTodoEntries async {
+    final queryResult = await select(todos).get();
+    return queryResult
+        .map((todo) => TodoModel(
+              id: todo.id,
+              title: todo.title,
+              subtitle: todo.subtitle,
+              date: todo.date,
+            ))
+        .toList();
+  }
+
+  Stream<List<TodoModel>> watchEntries() {
+    return select(todos).watch().map((list) => list
+        .map((todo) => TodoModel(
+              id: todo.id,
+              title: todo.title,
+              subtitle: todo.subtitle,
+              date: todo.date,
+            ))
+        .toList());
   }
 
   Future<void> deleteTodo(int id) {

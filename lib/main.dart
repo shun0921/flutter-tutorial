@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/index_page.dart';
 import 'package:flutter_tutorial/todo_list/model/todos.dart';
 
 void main() {
   final database = MyDatabase();
-  runApp(MyApp(database: database));
+  runApp(ProviderScope(child: MyApp(database: database)));
 }
 
 class MyApp extends StatelessWidget {

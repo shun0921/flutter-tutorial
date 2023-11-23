@@ -42,6 +42,9 @@ dependencies:
   sqlite3_flutter_libs: ^0.5.18
   drift: ^2.13.1
   drift_dev: ^2.13.2
+  freezed: ^2.4.5
+  freezed_annotation: ^2.4.1
+  flutter_riverpod: ^2.4.8
 
 dev_dependencies:
   flutter_test:
