@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
 import 'package:flutter_tutorial/mercari/mercari_page.dart';
 import 'package:flutter_tutorial/regidence/regidence_page.dart';
-import 'package:flutter_tutorial/todo_list/model/todos.dart';
 import 'package:flutter_tutorial/todo_list/view/todo_view.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
-class IndexPage extends StatelessWidget {
-  final MyDatabase database;
-  IndexPage({
-    Key? key,
-    required this.database,
-  }) : super(key: key);
+class IndexPage extends ConsumerWidget {
+  const IndexPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       body: Center(
         child: Column(
