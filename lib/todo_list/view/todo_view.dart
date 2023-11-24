@@ -43,21 +43,10 @@ class TodoView extends ConsumerWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text('タイトル: ${item.title}',
-                              style: const TextStyle(fontSize: 15)),
+                              style: const TextStyle(fontSize: 20)),
                           Text(item.subtitle,
-                              style: const TextStyle(fontSize: 30)),
-                          Row(
-                            children: [
-                              const SizedBox(width: 30),
-                              Text(
-                                  '作成日: ${DateFormat('yyyy-MM-dd').format(item.createdDate)}'),
-                              const SizedBox(width: 20),
-                              Text(
-                                '期限: ${item.date}',
-                                style: TextStyle(color: Colors.amber),
-                              ),
-                            ],
-                          ),
+                              style: const TextStyle(fontSize: 16)),
+                          Text('作成日時: ${item.date}'),
                         ],
                       ),
                     ),
@@ -166,7 +155,6 @@ class TodoView extends ConsumerWidget {
                   child: const Text('登録'),
                   onPressed: () {
                     if (selectedDate != null) {
-                      final now = DateTime.now();
                       ref.read(todoListProvider.notifier).addTodo(
                             TodoModel(
                               id: 0,
@@ -174,7 +162,6 @@ class TodoView extends ConsumerWidget {
                               subtitle: subTitleController.text,
                               date: DateFormat('yyyy-MM-dd')
                                   .format(selectedDate!),
-                              createdDate: now,
                             ),
                           );
                       Navigator.of(context).pop();
