@@ -19,7 +19,8 @@ mixin _$TodoModel {
   int get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get subtitle => throw _privateConstructorUsedError;
-  String get date => throw _privateConstructorUsedError;
+  String get date => throw _privateConstructorUsedError; // 期限
+  DateTime get createdDate => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TodoModelCopyWith<TodoModel> get copyWith =>
@@ -31,7 +32,12 @@ abstract class $TodoModelCopyWith<$Res> {
   factory $TodoModelCopyWith(TodoModel value, $Res Function(TodoModel) then) =
       _$TodoModelCopyWithImpl<$Res, TodoModel>;
   @useResult
-  $Res call({int id, String title, String subtitle, String date});
+  $Res call(
+      {int id,
+      String title,
+      String subtitle,
+      String date,
+      DateTime createdDate});
 }
 
 /// @nodoc
@@ -51,6 +57,7 @@ class _$TodoModelCopyWithImpl<$Res, $Val extends TodoModel>
     Object? title = null,
     Object? subtitle = null,
     Object? date = null,
+    Object? createdDate = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -69,6 +76,10 @@ class _$TodoModelCopyWithImpl<$Res, $Val extends TodoModel>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 }
@@ -81,7 +92,12 @@ abstract class _$$TodoModelImplCopyWith<$Res>
       __$$TodoModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String title, String subtitle, String date});
+  $Res call(
+      {int id,
+      String title,
+      String subtitle,
+      String date,
+      DateTime createdDate});
 }
 
 /// @nodoc
@@ -99,6 +115,7 @@ class __$$TodoModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? subtitle = null,
     Object? date = null,
+    Object? createdDate = null,
   }) {
     return _then(_$TodoModelImpl(
       id: null == id
@@ -117,6 +134,10 @@ class __$$TodoModelImplCopyWithImpl<$Res>
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
               as String,
+      createdDate: null == createdDate
+          ? _value.createdDate
+          : createdDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -128,7 +149,8 @@ class _$TodoModelImpl implements _TodoModel {
       {required this.id,
       required this.title,
       required this.subtitle,
-      required this.date});
+      required this.date,
+      required this.createdDate});
 
   @override
   final int id;
@@ -138,10 +160,13 @@ class _$TodoModelImpl implements _TodoModel {
   final String subtitle;
   @override
   final String date;
+// 期限
+  @override
+  final DateTime createdDate;
 
   @override
   String toString() {
-    return 'TodoModel(id: $id, title: $title, subtitle: $subtitle, date: $date)';
+    return 'TodoModel(id: $id, title: $title, subtitle: $subtitle, date: $date, createdDate: $createdDate)';
   }
 
   @override
@@ -153,11 +178,14 @@ class _$TodoModelImpl implements _TodoModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.subtitle, subtitle) ||
                 other.subtitle == subtitle) &&
-            (identical(other.date, date) || other.date == date));
+            (identical(other.date, date) || other.date == date) &&
+            (identical(other.createdDate, createdDate) ||
+                other.createdDate == createdDate));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, id, title, subtitle, date);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, subtitle, date, createdDate);
 
   @JsonKey(ignore: true)
   @override
@@ -171,7 +199,8 @@ abstract class _TodoModel implements TodoModel {
       {required final int id,
       required final String title,
       required final String subtitle,
-      required final String date}) = _$TodoModelImpl;
+      required final String date,
+      required final DateTime createdDate}) = _$TodoModelImpl;
 
   @override
   int get id;
@@ -181,6 +210,8 @@ abstract class _TodoModel implements TodoModel {
   String get subtitle;
   @override
   String get date;
+  @override // 期限
+  DateTime get createdDate;
   @override
   @JsonKey(ignore: true)
   _$$TodoModelImplCopyWith<_$TodoModelImpl> get copyWith =>

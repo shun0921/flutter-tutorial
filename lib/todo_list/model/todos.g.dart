@@ -33,8 +33,15 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
   late final GeneratedColumn<String> date = GeneratedColumn<String>(
       'date', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _createdDateMeta =
+      const VerificationMeta('createdDate');
   @override
-  List<GeneratedColumn> get $columns => [id, title, subtitle, date];
+  late final GeneratedColumn<DateTime> createdDate = GeneratedColumn<DateTime>(
+      'created_date', aliasedName, false,
+      type: DriftSqlType.dateTime, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [id, title, subtitle, date, createdDate];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -66,6 +73,14 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
     } else if (isInserting) {
       context.missing(_dateMeta);
     }
+    if (data.containsKey('created_date')) {
+      context.handle(
+          _createdDateMeta,
+          createdDate.isAcceptableOrUnknown(
+              data['created_date']!, _createdDateMeta));
+    } else if (isInserting) {
+      context.missing(_createdDateMeta);
+    }
     return context;
   }
 
@@ -83,6 +98,8 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
           .read(DriftSqlType.string, data['${effectivePrefix}subtitle'])!,
       date: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}date'])!,
+      createdDate: attachedDatabase.typeMapping
+          .read(DriftSqlType.dateTime, data['${effectivePrefix}created_date'])!,
     );
   }
 
@@ -97,11 +114,13 @@ class Todo extends DataClass implements Insertable<Todo> {
   final String title;
   final String subtitle;
   final String date;
+  final DateTime createdDate;
   const Todo(
       {required this.id,
       required this.title,
       required this.subtitle,
-      required this.date});
+      required this.date,
+      required this.createdDate});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
@@ -109,6 +128,7 @@ class Todo extends DataClass implements Insertable<Todo> {
     map['title'] = Variable<String>(title);
     map['subtitle'] = Variable<String>(subtitle);
     map['date'] = Variable<String>(date);
+    map['created_date'] = Variable<DateTime>(createdDate);
     return map;
   }
 
@@ -118,6 +138,7 @@ class Todo extends DataClass implements Insertable<Todo> {
       title: Value(title),
       subtitle: Value(subtitle),
       date: Value(date),
+      createdDate: Value(createdDate),
     );
   }
 
@@ -129,6 +150,7 @@ class Todo extends DataClass implements Insertable<Todo> {
       title: serializer.fromJson<String>(json['title']),
       subtitle: serializer.fromJson<String>(json['subtitle']),
       date: serializer.fromJson<String>(json['date']),
+      createdDate: serializer.fromJson<DateTime>(json['createdDate']),
     );
   }
   @override
@@ -139,15 +161,22 @@ class Todo extends DataClass implements Insertable<Todo> {
       'title': serializer.toJson<String>(title),
       'subtitle': serializer.toJson<String>(subtitle),
       'date': serializer.toJson<String>(date),
+      'createdDate': serializer.toJson<DateTime>(createdDate),
     };
   }
 
-  Todo copyWith({int? id, String? title, String? subtitle, String? date}) =>
+  Todo copyWith(
+          {int? id,
+          String? title,
+          String? subtitle,
+          String? date,
+          DateTime? createdDate}) =>
       Todo(
         id: id ?? this.id,
         title: title ?? this.title,
         subtitle: subtitle ?? this.subtitle,
         date: date ?? this.date,
+        createdDate: createdDate ?? this.createdDate,
       );
   @override
   String toString() {
@@ -155,13 +184,14 @@ class Todo extends DataClass implements Insertable<Todo> {
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('subtitle: $subtitle, ')
-          ..write('date: $date')
+          ..write('date: $date, ')
+          ..write('createdDate: $createdDate')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, title, subtitle, date);
+  int get hashCode => Object.hash(id, title, subtitle, date, createdDate);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -169,7 +199,8 @@ class Todo extends DataClass implements Insertable<Todo> {
           other.id == this.id &&
           other.title == this.title &&
           other.subtitle == this.subtitle &&
-          other.date == this.date);
+          other.date == this.date &&
+          other.createdDate == this.createdDate);
 }
 
 class TodosCompanion extends UpdateCompanion<Todo> {
@@ -177,31 +208,37 @@ class TodosCompanion extends UpdateCompanion<Todo> {
   final Value<String> title;
   final Value<String> subtitle;
   final Value<String> date;
+  final Value<DateTime> createdDate;
   const TodosCompanion({
     this.id = const Value.absent(),
     this.title = const Value.absent(),
     this.subtitle = const Value.absent(),
     this.date = const Value.absent(),
+    this.createdDate = const Value.absent(),
   });
   TodosCompanion.insert({
     this.id = const Value.absent(),
     required String title,
     required String subtitle,
     required String date,
+    required DateTime createdDate,
   })  : title = Value(title),
         subtitle = Value(subtitle),
-        date = Value(date);
+        date = Value(date),
+        createdDate = Value(createdDate);
   static Insertable<Todo> custom({
     Expression<int>? id,
     Expression<String>? title,
     Expression<String>? subtitle,
     Expression<String>? date,
+    Expression<DateTime>? createdDate,
   }) {
     return RawValuesInsertable({
       if (id != null) 'id': id,
       if (title != null) 'title': title,
       if (subtitle != null) 'subtitle': subtitle,
       if (date != null) 'date': date,
+      if (createdDate != null) 'created_date': createdDate,
     });
   }
 
@@ -209,12 +246,14 @@ class TodosCompanion extends UpdateCompanion<Todo> {
       {Value<int>? id,
       Value<String>? title,
       Value<String>? subtitle,
-      Value<String>? date}) {
+      Value<String>? date,
+      Value<DateTime>? createdDate}) {
     return TodosCompanion(
       id: id ?? this.id,
       title: title ?? this.title,
       subtitle: subtitle ?? this.subtitle,
       date: date ?? this.date,
+      createdDate: createdDate ?? this.createdDate,
     );
   }
 
@@ -233,6 +272,9 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     if (date.present) {
       map['date'] = Variable<String>(date.value);
     }
+    if (createdDate.present) {
+      map['created_date'] = Variable<DateTime>(createdDate.value);
+    }
     return map;
   }
 
@@ -242,7 +284,8 @@ class TodosCompanion extends UpdateCompanion<Todo> {
           ..write('id: $id, ')
           ..write('title: $title, ')
           ..write('subtitle: $subtitle, ')
-          ..write('date: $date')
+          ..write('date: $date, ')
+          ..write('createdDate: $createdDate')
           ..write(')'))
         .toString();
   }

@@ -14,6 +14,7 @@ class Todos extends Table {
   TextColumn get title => text()();
   TextColumn get subtitle => text()();
   TextColumn get date => text()();
+  DateTimeColumn get createdDate => dateTime()();
 }
 
 @DriftDatabase(tables: [Todos])
@@ -21,13 +22,14 @@ class MyDatabase extends _$MyDatabase {
   MyDatabase() : super(_openConnection());
 
   @override
-  int get schemaVersion => 1;
+  int get schemaVersion => 2;
 
   Future<int> addTodo(TodoModel model) {
     final todo = TodosCompanion(
       title: Value(model.title),
       subtitle: Value(model.subtitle),
       date: Value(model.date),
+      createdDate: Value(model.createdDate),
     );
     return into(todos).insert(todo);
   }
@@ -40,6 +42,7 @@ class MyDatabase extends _$MyDatabase {
               title: todo.title,
               subtitle: todo.subtitle,
               date: todo.date,
+              createdDate: todo.createdDate,
             ))
         .toList();
   }
@@ -51,6 +54,7 @@ class MyDatabase extends _$MyDatabase {
               title: todo.title,
               subtitle: todo.subtitle,
               date: todo.date,
+              createdDate: todo.createdDate,
             ))
         .toList());
   }

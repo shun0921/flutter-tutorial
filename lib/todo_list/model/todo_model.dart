@@ -9,5 +9,6 @@ abstract class TodoModel with _$TodoModel {
     required String title,
     required String subtitle,
     required String date,
+    required DateTime createdDate,
   }) = _TodoModel;
 }
