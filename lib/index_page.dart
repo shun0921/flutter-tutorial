@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/async/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
@@ -18,7 +19,6 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
                     builder: (context) => const BuildingLayoutPage(),
                   ),
@@ -28,10 +28,8 @@ class IndexPage extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                // ignore: lines_longer_than_80_chars
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
                   MaterialPageRoute(
                     builder: (context) => const AnimationPage(),
                   ),
@@ -43,8 +41,9 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
-                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                  MaterialPageRoute(
+                    builder: (context) => const YoutubePage(),
+                  ),
                 );
               },
               child: const Text('YouTubeボタン'),
@@ -53,11 +52,12 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  // ignore: inference_failure_on_instance_creation
-                  MaterialPageRoute(builder: (context) => const AsyncPage()),
+                  MaterialPageRoute(
+                    builder: (context) => const RegidencePage(),
+                  ),
                 );
               },
-              child: const Text('async'),
+              child: const Text('Regidence'),
             ),
           ],
         ),
