@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
 
 class ItemDetail {
-  final String imageUrl;
-  final String title;
-  final String price;
-  final String watch;
-
   ItemDetail({
     required this.imageUrl,
     required this.title,
     required this.price,
     required this.watch,
   });
+  final String imageUrl;
+  final String title;
+  final String price;
+  final String watch;
 }
 
 class Mercari extends StatefulWidget {
-  const Mercari({Key? key}) : super(key: key);
+  const Mercari({super.key});
 
   @override
   State<Mercari> createState() => _MercariState();
@@ -84,10 +83,10 @@ class _MercariState extends State<Mercari> {
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.all(8.0),
+              padding: EdgeInsets.all(8),
               child: Shortcut(),
             ),
-            Container(
+            DecoratedBox(
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
@@ -118,7 +117,7 @@ class _MercariState extends State<Mercari> {
                       ),
                       Icon(
                         Icons.arrow_forward_ios,
-                        size: 16.0,
+                        size: 16,
                         color: Colors.blue,
                       ),
                     ],
@@ -127,12 +126,13 @@ class _MercariState extends State<Mercari> {
               ),
             ),
             ListView.builder(
-                itemCount: _itemData.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                itemBuilder: (BuildContext cotext, int index) {
-                  return ItemList(itemDetail: _itemData[index]);
-                }),
+              itemCount: _itemData.length,
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemBuilder: (BuildContext cotext, int index) {
+                return ItemList(itemDetail: _itemData[index]);
+              },
+            ),
           ],
         ),
       ),
@@ -141,20 +141,21 @@ class _MercariState extends State<Mercari> {
 }
 
 class Shortcut extends StatelessWidget {
-  const Shortcut({Key? key}) : super(key: key);
+  const Shortcut({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.grey.withOpacity(0.2),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Image.network(
-                'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png'),
+              'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png',
+            ),
             const Padding(
-              padding: EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(14),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -246,7 +247,7 @@ class Shortcut extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -255,12 +256,12 @@ class Shortcut extends StatelessWidget {
 }
 
 class ItemList extends StatelessWidget {
+  const ItemList({super.key, required this.itemDetail});
   final ItemDetail itemDetail;
-  const ItemList({Key? key, required this.itemDetail}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
@@ -322,7 +323,7 @@ class ItemList extends StatelessWidget {
             ),
           ],
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       ),
     );
   }

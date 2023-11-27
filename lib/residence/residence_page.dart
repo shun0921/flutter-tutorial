@@ -2,8 +2,25 @@ import 'package:flutter/material.dart';
 
 enum Choice { recommend, refurbished }
 
+class ResidenceInfo {
+  ResidenceInfo({
+    required this.imagePath,
+    required this.buildingNamePath,
+    required this.roomPrice,
+    required this.nearStation,
+    required this.roomSize,
+    required this.buildingSize,
+  });
+  final List<String> imagePath;
+  final String buildingNamePath;
+  final String roomPrice;
+  final String nearStation;
+  final String roomSize;
+  final String buildingSize;
+}
+
 class RegidencePage extends StatefulWidget {
-  const RegidencePage({Key? key}) : super(key: key);
+  const RegidencePage({super.key});
 
   @override
   State<RegidencePage> createState() => _RegidencePageState();
@@ -13,25 +30,52 @@ class _RegidencePageState extends State<RegidencePage> {
   Choice selectedChoice = Choice.recommend;
   int _selectedIndex = 0;
 
+  final List<ResidenceInfo> _residenseData = [
+    ResidenceInfo(
+      imagePath: [
+        'https://d35omnrtvqomev.cloudfront.net/photo/article/article_part/image_path_1/528943/9e2e3a472ef6686b6d8425e0b56688.jpg',
+        'https://s3-ap-northeast-1.amazonaws.com/ietate/folders/16294/images/136670/large.jpg?1645431157',
+      ],
+      buildingNamePath: 'みなとみらいタワマン',
+      roomPrice: '9,800万円',
+      nearStation: 'みなとみらい駅 徒歩10分',
+      roomSize: '3LDK　南西向き',
+      buildingSize: '33階/35階建',
+    ),
+    ResidenceInfo(
+      imagePath: [
+        'https://www.lettuceclub.net/i/N1/1014211/10120852.jpg',
+        'https://www.madorizusakusei.com/images/case/case_2.jpg',
+      ],
+      buildingNamePath: 'アパート',
+      roomPrice: '1,800万円',
+      nearStation: '雑司ヶ谷 徒歩18分',
+      roomSize: '1LDK　南西向き',
+      buildingSize: '1階/2階建',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
           automaticallyImplyLeading: false,
           title: Center(
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Expanded(
                     child: _buildChoiceButton(Choice.recommend, 'カウルのおすすめ'),
                   ),
                 ),
                 Expanded(
                   child: _buildChoiceButtonSecond(
-                      Choice.refurbished, 'リフォーム済みの物件'),
+                    Choice.refurbished,
+                    'リフォーム済みの物件',
+                  ),
                 ),
                 const SizedBox(
                   width: 40,
@@ -54,21 +98,23 @@ class _RegidencePageState extends State<RegidencePage> {
           ),
         ),
       ),
-      body: Container(
+      body: ColoredBox(
         color: Colors.grey.withOpacity(0.2),
-        child: ListView(
-          children: const [
-            Padding(
-              padding: EdgeInsets.all(5.0),
+        child: Column(
+          children: [
+            const Padding(
+              padding: EdgeInsets.all(5),
               child: Recommend(),
             ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: HouseDetail(),
-            ),
-            Padding(
-              padding: EdgeInsets.all(5.0),
-              child: HouseDetail(),
+            Expanded(
+              child: ListView.builder(
+                itemCount: _residenseData.length,
+                itemBuilder: (BuildContext context, index) {
+                  return HouseDetailWidget(
+                    residenceInfo: _residenseData[index],
+                  );
+                },
+              ),
             ),
           ],
         ),
@@ -151,14 +197,15 @@ class _RegidencePageState extends State<RegidencePage> {
         overflow: TextOverflow.ellipsis,
         softWrap: false,
         style: TextStyle(
-            color: selectedChoice == choice ? Colors.teal : Colors.black,
-            fontSize: 13),
+          color: selectedChoice == choice ? Colors.teal : Colors.black,
+          fontSize: 13,
+        ),
       ),
     );
   }
 
   Widget _buildChoiceButtonSecond(Choice choice, String text) {
-    String notificationCount = '3';
+    const notificationCount = '3';
 
     return Stack(
       clipBehavior: Clip.none,
@@ -176,8 +223,9 @@ class _RegidencePageState extends State<RegidencePage> {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(
-                color: selectedChoice == choice ? Colors.teal : Colors.black,
-                fontSize: 13),
+              color: selectedChoice == choice ? Colors.teal : Colors.black,
+              fontSize: 13,
+            ),
           ),
         ),
         Positioned(
@@ -193,9 +241,9 @@ class _RegidencePageState extends State<RegidencePage> {
               minWidth: 18,
               minHeight: 18,
             ),
-            child: Text(
+            child: const Text(
               notificationCount,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -210,7 +258,7 @@ class _RegidencePageState extends State<RegidencePage> {
 }
 
 class Recommend extends StatefulWidget {
-  const Recommend({Key? key}) : super(key: key);
+  const Recommend({super.key});
 
   @override
   State<Recommend> createState() => _RecommendState();
@@ -220,7 +268,7 @@ class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -233,12 +281,12 @@ class _RecommendState extends State<Recommend> {
             Row(
               children: [
                 const Text(
-                  '  カウルのおすすめ',
+                  '  カウルのおすすめ', //スペースはあえてつけてます
                   style: TextStyle(fontSize: 15),
                   overflow: TextOverflow.ellipsis,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     '新着3件',
                     style: TextStyle(fontSize: 15, color: Colors.red),
@@ -249,7 +297,6 @@ class _RecommendState extends State<Recommend> {
                   onPressed: () {},
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
                   ),
                   child: const Text(
                     '編集',
@@ -262,18 +309,17 @@ class _RecommendState extends State<Recommend> {
                     Icons.edit,
                     color: Colors.teal,
                   ),
-                  padding: const EdgeInsets.all(0),
                   constraints: const BoxConstraints(),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Container(
                 width: 400,
                 color: Colors.grey.withOpacity(0.1),
                 child: const Column(
-                  mainAxisSize: MainAxisSize.min, // Columnのサイズを子に合わせる
+                  mainAxisSize: MainAxisSize.min,
                   children: [
                     Row(
                       children: [
@@ -322,18 +368,14 @@ class _RecommendState extends State<Recommend> {
   }
 }
 
-class HouseDetail extends StatefulWidget {
-  const HouseDetail({Key? key}) : super(key: key);
+class HouseDetailWidget extends StatelessWidget {
+  const HouseDetailWidget({super.key, required this.residenceInfo});
+  final ResidenceInfo residenceInfo;
 
-  @override
-  State<HouseDetail> createState() => _HouseDetailState();
-}
-
-class _HouseDetailState extends State<HouseDetail> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -343,38 +385,34 @@ class _HouseDetailState extends State<HouseDetail> {
         child: Column(
           children: [
             Row(
-              children: [
-                Expanded(
-                  child: Image.network(
-                      'https://thumb.ac-illust.com/18/185fe60d543230116f69f3b41238a90d_t.jpeg'),
+              children: List.generate(
+                residenceInfo.imagePath.length,
+                (int imgIndex) => Expanded(
+                  child: Image.network(residenceInfo.imagePath[imgIndex]),
                 ),
-                Expanded(
-                  child: Image.network(
-                      'https://www.sakai-iin.com/_p/acre/25978/images/pc/smart_phone_8ec92575.jpg'),
-                ),
-              ],
+              ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 2, bottom: 1),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Rising place川崎',
-                  style: TextStyle(
+                  residenceInfo.buildingNamePath,
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  '2,000万円',
+                  residenceInfo.roomPrice,
                   textAlign: TextAlign.left,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,
                     color: Colors.red,
@@ -382,48 +420,16 @@ class _HouseDetailState extends State<HouseDetail> {
                 ),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
-                  Icon(Icons.train, size: 15),
-                  SizedBox(width: 8),
+                  const Icon(Icons.train, size: 15),
+                  const SizedBox(width: 8),
                   Expanded(
                     child: Text(
-                      '京急本線 京急川崎駅より 徒歩9分',
-                      style: TextStyle(fontSize: 12),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
-              child: Row(
-                children: [
-                  Icon(Icons.menu, size: 15),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '1k/ 21.24m2 南西向き',
-                      style: TextStyle(fontSize: 12),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
-              child: Row(
-                children: [
-                  Icon(Icons.house_siding_sharp, size: 15),
-                  SizedBox(width: 8),
-                  Expanded(
-                    child: Text(
-                      '2階/15階建 築5年',
-                      style: TextStyle(fontSize: 12),
+                      residenceInfo.nearStation,
+                      style: const TextStyle(fontSize: 12),
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
@@ -431,12 +437,44 @@ class _HouseDetailState extends State<HouseDetail> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
+              child: Row(
+                children: [
+                  const Icon(Icons.menu, size: 15),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      residenceInfo.roomSize,
+                      style: const TextStyle(fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
+              child: Row(
+                children: [
+                  const Icon(Icons.house_siding_sharp, size: 15),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(
+                      residenceInfo.buildingSize,
+                      style: const TextStyle(fontSize: 12),
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -445,7 +483,6 @@ class _HouseDetailState extends State<HouseDetail> {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -467,7 +504,7 @@ class _HouseDetailState extends State<HouseDetail> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -476,7 +513,6 @@ class _HouseDetailState extends State<HouseDetail> {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
