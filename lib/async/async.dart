@@ -58,7 +58,7 @@ class _AsyncPageState extends State<AsyncPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          await showDialog<String>(
+          await showDialog<void>(
             context: context,
             builder: (BuildContext context) {
               return CustomDialog(
