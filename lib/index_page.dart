@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+import 'package:flutter_tutorial/qiita/view/qiita_home_page.dart';
+import 'package:flutter_tutorial/regidence/regidence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
@@ -9,36 +11,62 @@ class IndexPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ElevatedButton(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const BuildingLayoutPage()),
+                  );
+                },
+                child: const Text('Tutorial1')),
+            ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => BuildingLayoutPage()),
+                  MaterialPageRoute(
+                      builder: (context) => const AnimationPage()),
                 );
               },
-              child: Text('Tutorial1')),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => AnimationPage()),
-              );
-            },
-            child: Text('Tutorial1-1'),
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => YoutubePage()),
-              );
-            },
-            child: Text('YouTubeボタン'),
-          ),
-        ],
+              child: const Text('Tutorial1-1'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                );
+              },
+              child: const Text('YouTubeボタン'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const RegidencePage(),
+                  ),
+                );
+              },
+              child: const Text('Regidence'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QiitaHomePage(),
+                  ),
+                );
+              },
+              child: const Text('Qiita'),
+            ),
+          ],
+        ),
       ),
     );
   }

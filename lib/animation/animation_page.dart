@@ -61,8 +61,7 @@ class _AnimationPageState extends State<AnimationPage>
         } else if (status == AnimationStatus.dismissed) {
           controller.forward();
         }
-      })
-      ..addStatusListener((status) => print('$status'));
+      });
     controller.forward();
   }
 

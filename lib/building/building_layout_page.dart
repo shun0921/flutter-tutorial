@@ -51,13 +51,13 @@ class BuildingLayoutPage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.call,
                             color: Colors.blue,
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 8),
-                            child: Text(
+                            child: const Text(
                               'call',
                               style: TextStyle(
                                 fontSize: 12,
@@ -71,13 +71,13 @@ class BuildingLayoutPage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.near_me,
                             color: Colors.blue,
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 8),
-                            child: Text(
+                            child: const Text(
                               'Route',
                               style: TextStyle(
                                 fontSize: 12,
@@ -91,13 +91,13 @@ class BuildingLayoutPage extends StatelessWidget {
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.share,
                             color: Colors.blue,
                           ),
                           Container(
                             margin: const EdgeInsets.only(top: 8),
-                            child: Text(
+                            child: const Text(
                               'SHARE',
                               style: TextStyle(
                                 fontSize: 12,
@@ -112,8 +112,8 @@ class BuildingLayoutPage extends StatelessWidget {
                   ),
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.all(32.0),
+              const Padding(
+                padding: EdgeInsets.all(32.0),
                 child: Text(
                   'Lake Oeschinen lies at the foot of the Blüemlisalp in the Bernese '
                   'Alps. Situated 1,578 meters above sea level, it is one of the '

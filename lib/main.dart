@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:flutter_tutorial/qiita/view/home_page.dart';
+import 'package:flutter_tutorial/index_page.dart';
 
 void main() {
-  const app = MyApp();
-  const scope = ProviderScope(child: app);
-  runApp(scope);
+  runApp(
+    const ProviderScope(child: MyApp()),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomePage(),
+      home: const IndexPage(),
     );
   }
 }

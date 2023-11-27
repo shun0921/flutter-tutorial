@@ -25,17 +25,41 @@ class _YoutubePageState extends State<YoutubePage> {
   int _selectedIndex = 0;
 
   final List<CustomButton> buttons = [
-    CustomButton(
-        icon: Icons.local_fire_department, label: "急上昇", color: Colors.red),
-    CustomButton(icon: Icons.music_note, label: "音楽", color: Colors.teal),
-    CustomButton(
-        icon: Icons.gamepad_rounded, label: "ゲーム", color: Colors.pinkAccent),
-    CustomButton(icon: Icons.menu_sharp, label: "ニュース", color: Colors.indigo),
-    CustomButton(icon: Icons.menu_sharp, label: "学び", color: Colors.green),
-    CustomButton(
-        icon: Icons.live_tv, label: "ライブ", color: Colors.deepOrangeAccent),
-    CustomButton(
-        icon: Icons.play_circle_fill, label: "スポーツ", color: Colors.cyan),
+    const CustomButton(
+      icon: Icons.local_fire_department,
+      label: "急上昇",
+      color: Colors.red,
+    ),
+    const CustomButton(
+      icon: Icons.music_note,
+      label: "音楽",
+      color: Colors.teal,
+    ),
+    const CustomButton(
+      icon: Icons.gamepad_rounded,
+      label: "ゲーム",
+      color: Colors.pinkAccent,
+    ),
+    const CustomButton(
+      icon: Icons.menu_sharp,
+      label: "ニュース",
+      color: Colors.indigo,
+    ),
+    const CustomButton(
+      icon: Icons.menu_sharp,
+      label: "学び",
+      color: Colors.green,
+    ),
+    const CustomButton(
+      icon: Icons.live_tv,
+      label: "ライブ",
+      color: Colors.deepOrangeAccent,
+    ),
+    const CustomButton(
+      icon: Icons.play_circle_fill,
+      label: "スポーツ",
+      color: Colors.cyan,
+    ),
   ];
 
   final List<MovieInfo> _movieData = [
@@ -242,7 +266,8 @@ class CustomButton extends StatelessWidget {
   final String label;
   final Color color;
 
-  CustomButton({
+  const CustomButton({
+    super.key,
     required this.icon,
     required this.label,
     required this.color,

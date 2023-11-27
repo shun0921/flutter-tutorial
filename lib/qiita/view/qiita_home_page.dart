@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/qiita/model/article_state/article_state.dart';
 import 'package:flutter_tutorial/qiita/viewmodel/view_model.dart';
 
-class HomePage extends ConsumerWidget {
-  const HomePage({super.key});
+class QiitaHomePage extends ConsumerWidget {
+  const QiitaHomePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
