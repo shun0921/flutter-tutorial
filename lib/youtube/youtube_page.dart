@@ -31,32 +31,32 @@ class _YoutubePageState extends State<YoutubePage> {
     ),
     const CustomButton(
       icon: Icons.music_note,
-      label: "音楽",
+      label: '音楽',
       color: Colors.teal,
     ),
     const CustomButton(
       icon: Icons.gamepad_rounded,
-      label: "ゲーム",
+      label: 'ゲーム',
       color: Colors.pinkAccent,
     ),
     const CustomButton(
       icon: Icons.menu_sharp,
-      label: "ニュース",
+      label: 'ニュース',
       color: Colors.indigo,
     ),
     const CustomButton(
       icon: Icons.menu_sharp,
-      label: "学び",
+      label: '学び',
       color: Colors.green,
     ),
     const CustomButton(
       icon: Icons.live_tv,
-      label: "ライブ",
+      label: 'ライブ',
       color: Colors.deepOrangeAccent,
     ),
     const CustomButton(
       icon: Icons.play_circle_fill,
-      label: "スポーツ",
+      label: 'スポーツ',
       color: Colors.cyan,
     ),
   ];
