@@ -276,9 +276,6 @@ class CustomButton extends StatelessWidget {
     required this.label,
     required this.color,
   });
-  final IconData icon;
-  final String label;
-  final Color color;
 
   @override
   Widget build(BuildContext context) {
