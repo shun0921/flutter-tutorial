@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
-import 'package:flutter_tutorial/qiita/view/qiita_home_page.dart';
 import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/view/youtube_page.dart';
 
@@ -53,17 +52,6 @@ class IndexPage extends StatelessWidget {
                 );
               },
               child: const Text('Regidence'),
-            ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const QiitaHomePage(),
-                  ),
-                );
-              },
-              child: const Text('Qiita'),
             ),
           ],
         ),

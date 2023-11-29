@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/youtube/api/api.dart';
 import 'package:flutter_tutorial/youtube/model/movie.dart';
+import 'package:flutter_tutorial/youtube/view/appbar.dart';
+import 'package:flutter_tutorial/youtube/view/custombutton.dart';
 
 class YoutubePage extends StatefulWidget {
   const YoutubePage({super.key});
@@ -23,7 +25,7 @@ class _YoutubePageState extends State<YoutubePage> {
 
   Future<void> _fetchMovies() async {
     setState(() {
-      isLoading = true; // ローディング開始
+      isLoading = true;
     });
 
     final dio = Dio();
@@ -33,11 +35,11 @@ class _YoutubePageState extends State<YoutubePage> {
       final movies = await api.getMovies();
       setState(() {
         _movies = movies;
-        isLoading = false; // ローディング終了
+        isLoading = false;
       });
     } catch (e) {
       setState(() {
-        isLoading = false; // エラー時もローディング終了
+        isLoading = false;
       });
     }
   }
@@ -61,6 +63,7 @@ class _YoutubePageState extends State<YoutubePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       appBar: AppBar(
         title: const Text(
           'YouTube',
@@ -124,6 +127,9 @@ class _YoutubePageState extends State<YoutubePage> {
           size: 30,
         ),
       ),
+=======
+      appBar: customAppBar(),
+>>>>>>> b3234ee (コードを見やすくするために調整)
       body: isLoading
           ? const Center(child: CircularProgressIndicator())
           : ColoredBox(
@@ -199,49 +205,11 @@ class _YoutubePageState extends State<YoutubePage> {
                 ),
               ),
             ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: _selectedIndex,
-        onTap: (int index) {
-          setState(() {
-            _selectedIndex = index;
-          });
-        },
-        selectedLabelStyle: const TextStyle(fontSize: 10),
-        selectedItemColor: Colors.white,
-        unselectedLabelStyle: const TextStyle(fontSize: 10),
-        unselectedItemColor: Colors.white.withOpacity(0.9),
-        backgroundColor: Colors.black,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'ホーム',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: '検索',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.add_circle_outline,
-              size: 45,
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.subscriptions_outlined),
-            label: '登録チャンネル',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.video_library),
-            label: 'ライブラリ',
-          ),
-        ],
-      ),
+      bottomNavigationBar: buildBottomNavigationBar(),
     );
   }
-}
 
+<<<<<<< HEAD
 class CustomButton extends StatelessWidget {
   final IconData icon;
   final String label;
@@ -274,9 +242,47 @@ class CustomButton extends StatelessWidget {
               color: Colors.white,
               fontSize: 17,
             ),
+=======
+  BottomNavigationBar buildBottomNavigationBar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
+      currentIndex: _selectedIndex,
+      onTap: (int index) {
+        setState(() {
+          _selectedIndex = index;
+        });
+      },
+      selectedLabelStyle: const TextStyle(fontSize: 10),
+      selectedItemColor: Colors.white,
+      unselectedLabelStyle: const TextStyle(fontSize: 10),
+      unselectedItemColor: Colors.white.withOpacity(0.9),
+      backgroundColor: Colors.black,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(Icons.home),
+          label: 'ホーム',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.search),
+          label: '検索',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(
+            Icons.add_circle_outline,
+            size: 45,
+>>>>>>> b3234ee (コードを見やすくするために調整)
           ),
-        ],
-      ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.subscriptions_outlined),
+          label: '登録チャンネル',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.video_library),
+          label: 'ライブラリ',
+        ),
+      ],
     );
   }
 }

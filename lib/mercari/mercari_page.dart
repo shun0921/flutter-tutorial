@@ -17,10 +17,17 @@ class Mercari extends StatefulWidget {
   const Mercari({super.key});
 
   @override
+<<<<<<< HEAD
   State<Mercari> createState() => _MercariState();
 }
 
 class _MercariState extends State<Mercari> {
+=======
+  State<Mercari> createState() => MercariState();
+}
+
+class MercariState extends State<Mercari> {
+>>>>>>> b3234ee (コードを見やすくするために調整)
   final List<ItemDetail> _itemData = [
     ItemDetail(
       imageUrl:
@@ -126,6 +133,7 @@ class _MercariState extends State<Mercari> {
               ),
             ),
             ListView.builder(
+<<<<<<< HEAD
               itemCount: _itemData.length,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -133,6 +141,14 @@ class _MercariState extends State<Mercari> {
                 return ItemList(itemDetail: _itemData[index]);
               },
             ),
+=======
+                itemCount: _itemData.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (BuildContext cotext, int index) {
+                  return ItemList(itemDetail: _itemData[index]);
+                }),
+>>>>>>> b3234ee (コードを見やすくするために調整)
           ],
         ),
       ),
