@@ -18,10 +18,10 @@ class Mercari extends StatefulWidget {
   const Mercari({Key? key}) : super(key: key);
 
   @override
-  State<Mercari> createState() => _mercariState();
+  State<Mercari> createState() => MercariState();
 }
 
-class _mercariState extends State<Mercari> {
+class MercariState extends State<Mercari> {
   final List<ItemDetail> _itemData = [
     ItemDetail(
       imageUrl:
@@ -129,7 +129,7 @@ class _mercariState extends State<Mercari> {
             ListView.builder(
                 itemCount: _itemData.length,
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (BuildContext cotext, int index) {
                   return ItemList(itemDetail: _itemData[index]);
                 }),
@@ -297,13 +297,13 @@ class ItemList extends StatelessWidget {
           children: [
             Text(
               itemDetail.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
             Text(
               itemDetail.price,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
@@ -312,7 +312,7 @@ class ItemList extends StatelessWidget {
         subtitle: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.local_fire_department,
               size: 15,
               color: Colors.blue,

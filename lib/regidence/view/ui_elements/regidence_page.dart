@@ -2,8 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/regidence/api/api.dart';
 import 'package:flutter_tutorial/regidence/model/regidence.dart';
-import 'package:flutter_tutorial/regidence/view/recommend.dart';
-import 'package:flutter_tutorial/regidence/view/regidence_detail.dart';
+import 'package:flutter_tutorial/regidence/view/ui_elements/recommend.dart';
+import 'package:flutter_tutorial/regidence/view/ui_elements/regidence_detail.dart';
 
 enum Choice { recommend, refurbished }
 
@@ -41,7 +41,6 @@ class _RegidencePageState extends State<RegidencePage> {
         isLoading = false;
       });
     } catch (e) {
-      print(e);
       setState(() {
         isLoading = false;
       });
@@ -60,7 +59,7 @@ class _RegidencePageState extends State<RegidencePage> {
           ),
           Expanded(
             child: isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : ListView.builder(
                     itemCount: _regidence.length,
                     itemBuilder: (context, index) {

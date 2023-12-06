@@ -1,25 +1,19 @@
-import 'package:json_annotation/json_annotation.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'regidence.freezed.dart';
 part 'regidence.g.dart';
 
-@JsonSerializable()
-class Regidence {
-  List<String> imagePath;
-  String buildingNamePath;
-  String roomPrice;
-  String nearStation;
-  String roomSize;
-  String buildingSize;
-
-  Regidence(
-      {required this.imagePath,
-      required this.buildingNamePath,
-      required this.roomPrice,
-      required this.nearStation,
-      required this.roomSize,
-      required this.buildingSize});
+@freezed
+class Regidence with _$Regidence {
+  factory Regidence({
+    required List<String> imagePath,
+    required String buildingNamePath,
+    required String roomPrice,
+    required String nearStation,
+    required String roomSize,
+    required String buildingSize,
+  }) = _Regidence;
 
   factory Regidence.fromJson(Map<String, dynamic> json) =>
       _$RegidenceFromJson(json);
-  Map<String, dynamic> toJson() => _$RegidenceToJson(this);
 }

@@ -6,7 +6,8 @@ part of 'regidence.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-Regidence _$RegidenceFromJson(Map<String, dynamic> json) => Regidence(
+_$RegidenceImpl _$$RegidenceImplFromJson(Map<String, dynamic> json) =>
+    _$RegidenceImpl(
       imagePath:
           (json['imagePath'] as List<dynamic>).map((e) => e as String).toList(),
       buildingNamePath: json['buildingNamePath'] as String,
@@ -16,7 +17,8 @@ Regidence _$RegidenceFromJson(Map<String, dynamic> json) => Regidence(
       buildingSize: json['buildingSize'] as String,
     );
 
-Map<String, dynamic> _$RegidenceToJson(Regidence instance) => <String, dynamic>{
+Map<String, dynamic> _$$RegidenceImplToJson(_$RegidenceImpl instance) =>
+    <String, dynamic>{
       'imagePath': instance.imagePath,
       'buildingNamePath': instance.buildingNamePath,
       'roomPrice': instance.roomPrice,
