@@ -52,7 +52,7 @@ AppBar customAppBar() {
             ),
           ],
         ),
-      )
+      ),
     ],
     backgroundColor: Colors.black.withOpacity(0.8),
     centerTitle: false,
