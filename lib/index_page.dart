@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
-import 'package:flutter_tutorial/regidence/view/ui_elements/regidence_page.dart';
+import 'package:flutter_tutorial/regidence/view/page/regidence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
