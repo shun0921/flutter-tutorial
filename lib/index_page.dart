@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
+import 'package:flutter_tutorial/async/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
 import 'package:flutter_tutorial/regidence/view/page/regidence_page.dart';
+import 'package:flutter_tutorial/qiita/view/qiita_home_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends StatelessWidget {
@@ -47,10 +49,22 @@ class IndexPage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const RegidencePage()),
+                    builder: (context) => const RegidencePage(),
+                  ),
                 );
               },
               child: const Text('Regidence'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const QiitaHomePage(),
+                  ),
+                );
+              },
+              child: const Text('Qiita'),
             ),
           ],
         ),
