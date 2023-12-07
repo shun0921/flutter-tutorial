@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'api.dart';
+part of 'weather_api_client.dart';
 
 // **************************************************************************
 // RetrofitGenerator
@@ -8,12 +8,12 @@ part of 'api.dart';
 
 // ignore_for_file: unnecessary_brace_in_string_interps,no_leading_underscores_for_local_identifiers
 
-class _Api implements Api {
-  _Api(
+class _WeathersApiClient implements WeathersApiClient {
+  _WeathersApiClient(
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qiita.com/api/v2';
+    baseUrl ??= 'https://api.openweathermap.org/data/2.5';
   }
 
   final Dio _dio;
@@ -21,20 +21,32 @@ class _Api implements Api {
   String? baseUrl;
 
   @override
-  Future<List<Article>> fetchArticles(String tag) async {
+  Future<WeatherResponse> getWeather({
+    required double latitude,
+    required double longitude,
+    required String apiKey,
+    String units = 'metric',
+    String lang = 'ja',
+  }) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{
+      r'lat': latitude,
+      r'lon': longitude,
+      r'appid': apiKey,
+      r'units': units,
+      r'lang': lang,
+    };
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
-    final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Article>>(Options(
+    final _result = await _dio
+        .fetch<Map<String, dynamic>>(_setStreamType<WeatherResponse>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/tags/${tag}/items',
+              '/onecall',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -43,9 +55,7 @@ class _Api implements Api {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    var value = _result.data!
-        .map((dynamic i) => Article.fromJson(i as Map<String, dynamic>))
-        .toList();
+    final value = WeatherResponse.fromJson(_result.data!);
     return value;
   }
 

@@ -1,8 +1,8 @@
 import 'package:dio/dio.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/qiita/model/api/api.dart';
 import 'package:flutter_tutorial/qiita/model/article_state/article_state.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
+import 'package:riverpod/riverpod.dart';
 
 final dioProvider = Provider<Dio>((_) {
   return Dio()..interceptors.add(PrettyDioLogger());
