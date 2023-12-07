@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 
 class Shortcut extends StatelessWidget {
-  const Shortcut({Key? key}) : super(key: key);
+  const Shortcut({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return ColoredBox(
       color: Colors.grey.withOpacity(0.2),
       child: Padding(
-        padding: const EdgeInsets.all(10.0),
+        padding: const EdgeInsets.all(10),
         child: Column(
           children: [
             Image.network(
-                'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png'),
+              'https://static.jp.mercari.com/assets/img/guide/beginner/ogp.png',
+            ),
             const Padding(
-              padding: EdgeInsets.all(14.0),
+              padding: EdgeInsets.all(14),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -106,7 +107,7 @@ class Shortcut extends StatelessWidget {
                   ),
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),

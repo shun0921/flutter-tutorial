@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/mercari/model/item.dart';
 
 class ItemList extends StatelessWidget {
+  const ItemList({super.key, required this.item});
   final Item item;
-  const ItemList({Key? key, required this.item}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return DecoratedBox(
       decoration: BoxDecoration(
         border: Border(
           bottom: BorderSide(color: Colors.grey.withOpacity(0.3)),
@@ -44,13 +44,13 @@ class ItemList extends StatelessWidget {
           children: [
             Text(
               item.title,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
             Text(
               item.price,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 15,
               ),
             ),
@@ -59,7 +59,7 @@ class ItemList extends StatelessWidget {
         subtitle: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(
+            const Icon(
               Icons.local_fire_department,
               size: 15,
               color: Colors.blue,
@@ -69,7 +69,7 @@ class ItemList extends StatelessWidget {
             ),
           ],
         ),
-        contentPadding: const EdgeInsets.symmetric(horizontal: 5.0),
+        contentPadding: const EdgeInsets.symmetric(horizontal: 5),
       ),
     );
   }

@@ -268,16 +268,15 @@ class _YoutubePageState extends State<YoutubePage> {
 }
 
 class CustomButton extends StatelessWidget {
-  final IconData icon;
-  final String label;
-  final Color color;
-
   const CustomButton({
     super.key,
     required this.icon,
     required this.label,
     required this.color,
   });
+  final IconData icon;
+  final String label;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
