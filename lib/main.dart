@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/index_page.dart';
+import 'package:flutter_tutorial/todo_list/model/todos.dart';
 
 void main() {
   runApp(
@@ -8,8 +9,11 @@ void main() {
   );
 }
 
+final databaseProvider = Provider<MyDatabase>((ref) {
+  return MyDatabase();
+});
+
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
