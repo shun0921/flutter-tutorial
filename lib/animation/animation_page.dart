@@ -65,6 +65,7 @@ class _AnimationPageState extends State<AnimationPage>
           controller.forward();
         }
       });
+
     controller.forward();
   }
 
