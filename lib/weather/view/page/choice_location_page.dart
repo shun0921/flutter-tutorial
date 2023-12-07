@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/weather/view/ui_components/appbar.dart';
+import 'package:flutter_tutorial/weather/view/ui_components/city.dart';
 import 'package:flutter_tutorial/weather/view/ui_components/get_weather_button.dart';
+import 'package:flutter_tutorial/weather/view/ui_components/loading.dart';
 import 'package:flutter_tutorial/weather/view/ui_components/place_pulldownlist.dart';
 import 'package:flutter_tutorial/weather/view/ui_components/weather_icons.dart';
 import 'package:flutter_tutorial/weather/viewmodel/weather_provider.dart';
-import 'package:provider/provider.dart';
 
-class ChoiceLocationPage extends StatelessWidget {
+class ChoiceLocationPage extends ConsumerWidget {
   const ChoiceLocationPage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final weatherViewModel = Provider.of<WeatherViewModel>(context);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final weatherState = ref.watch(weatherViewModelProvider);
 
     return Scaffold(
       appBar: const CustomAppBar(),
@@ -34,19 +36,21 @@ class ChoiceLocationPage extends StatelessWidget {
                     ),
                     const SizedBox(height: 50),
                     PlacePullDown(
-                      selectedCity: weatherViewModel.selectedCity,
+                      selectedCity: weatherState.selectedCity,
                       onCityChanged: (City newCity) {
-                        weatherViewModel.selectedCity = newCity;
+                        ref
+                            .read(weatherViewModelProvider.notifier)
+                            .setSelectedCity(newCity);
                       },
                     ),
                     const SizedBox(height: 140),
-                    GetWeatherButton(weatherViewModel: weatherViewModel),
+                    const GetWeatherButton(),
                   ],
                 ),
               ),
             ),
           ),
-          if (weatherViewModel.isLoading) const LoadingOverlay(),
+          if (weatherState.isLoading) const Loading(),
         ],
       ),
     );

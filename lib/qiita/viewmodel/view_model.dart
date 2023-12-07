@@ -1,6 +1,6 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/qiita/model/article_state/article_state.dart';
 import 'package:flutter_tutorial/qiita/repository/repository.dart';
+import 'package:riverpod/riverpod.dart';
 
 final qiitaViewModelProvider =
     StateNotifierProvider.autoDispose<QiitaViewModel, ArticleState>(

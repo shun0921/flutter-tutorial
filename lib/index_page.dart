@@ -65,7 +65,7 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<QiitaHomePage>(
                     builder: (context) => const QiitaHomePage(),
                   ),
                 );

@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/index_page.dart';
-import 'package:flutter_tutorial/weather/viewmodel/weather_provider.dart';
-import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider<WeatherViewModel>(
-      create: (_) => WeatherViewModel(),
-      child: const MyApp(),
-    ),
+    const ProviderScope(child: MyApp()),
   );
 }
 

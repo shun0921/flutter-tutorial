@@ -1,56 +1,86 @@
 import 'package:dio/dio.dart';
-import 'package:flutter/foundation.dart';
-import 'package:flutter_tutorial/weather/model/api/weather_api_client.dart';
-import 'package:flutter_tutorial/weather/model/repository/repository.dart';
-import 'package:flutter_tutorial/weather/model/weather_item/weather_data.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/weather/model/weather_item/weather_response.dart';
-import 'package:flutter_tutorial/weather/view/ui_components/place_pulldownlist.dart';
+import 'package:flutter_tutorial/weather/view/ui_components/city.dart';
 
-class WeatherViewModel with ChangeNotifier {
-  WeatherViewModel()
-      : _repository = WeatherRepository(WeathersApiClient(Dio()));
-  final WeatherRepository _repository;
-  WeatherResponse? weatherResponse;
-  bool _isLoading = false;
-  bool _isNavigationNeeded = false;
-  bool get isLoading => _isLoading;
-  bool get isNavigationNeeded => _isNavigationNeeded;
-  City _selectedCity = City(name: '東京', latitude: 35.6895, longitude: 139.6917);
-  City get selectedCity => _selectedCity;
+import '../model/api/weather_api_client.dart';
+import '../model/repository/repository.dart';
 
-  set selectedCity(City newValue) {
-    if (_selectedCity == newValue) {
-      return;
-    }
-    _selectedCity = newValue;
-    notifyListeners();
+final weatherViewModelProvider =
+    StateNotifierProvider<WeatherViewModel, WeatherState>((ref) {
+  return WeatherViewModel();
+});
+
+class WeatherState {
+  WeatherState({
+    this.weatherResponse,
+    this.isLoading = false,
+    this.isNavigationNeeded = false,
+    this.errorMessage,
+    this.selectedCity = City.tokyo,
+  });
+  final WeatherResponse? weatherResponse;
+  final bool isLoading;
+  final bool isNavigationNeeded;
+  final String? errorMessage;
+  final City selectedCity;
+
+  WeatherState copyWith({
+    WeatherResponse? weatherResponse,
+    bool? isLoading,
+    bool? isNavigationNeeded,
+    String? errorMessage,
+    City? selectedCity,
+  }) {
+    return WeatherState(
+      weatherResponse: weatherResponse ?? this.weatherResponse,
+      isLoading: isLoading ?? this.isLoading,
+      isNavigationNeeded: isNavigationNeeded ?? this.isNavigationNeeded,
+      errorMessage: errorMessage ?? this.errorMessage,
+      selectedCity: selectedCity ?? this.selectedCity,
+    );
+  }
+}
+
+class WeatherViewModel extends StateNotifier<WeatherState> {
+  WeatherViewModel() : super(WeatherState()) {
+    _repository = WeatherRepository(WeathersApiClient(Dio()));
   }
 
-  Future<void> fetchWeather(
-    double latitude,
-    double longitude,
-    String apiKey,
-  ) async {
-    _isLoading = true;
-    _isNavigationNeeded = false;
-    notifyListeners();
+  late final WeatherRepository _repository;
+  final String apiKey = '4b0e4756a7f3015c0d08c2f0263c224a';
 
+  Future<void> fetchWeather() async {
+    final city = state.selectedCity;
+    state = state.copyWith(isLoading: true);
     try {
       final response =
-          await _repository.fetchWeather(latitude, longitude, apiKey);
+          await _repository.fetchWeather(city.latitude, city.longitude, apiKey);
 
       if (response.dailyForecasts != null) {
-        weatherResponse = WeatherResponse(
-          dailyForecasts: response.dailyForecasts!.take(3).toList(),
+        state = state.copyWith(
+          weatherResponse: WeatherResponse(
+            dailyForecasts: response.dailyForecasts!.take(3).toList(),
+          ),
+          isNavigationNeeded: true,
+          isLoading: false,
         );
-        _isNavigationNeeded = true;
       } else {
-        weatherResponse = response;
+        state = state.copyWith(
+          weatherResponse: response,
+          isLoading: false,
+        );
       }
-    } finally {
-      _isLoading = false;
-      notifyListeners();
+    } catch (e) {
+      state = state.copyWith(isLoading: false, errorMessage: 'データの取得に失敗しました。');
     }
+  }
+
+  void setSelectedCity(City newCity) {
+    if (state.selectedCity == newCity) {
+      return;
+    }
+    state = state.copyWith(selectedCity: newCity);
   }
 
   String clothingRecommendByTemperature(double? temperture) {
@@ -76,6 +106,4 @@ class WeatherViewModel with ChangeNotifier {
     }
     return '服装のおすすめ: データに基づくおすすめが利用できません';
   }
-
-  List<WeatherForecast>? get dailyForecasts => weatherResponse?.dailyForecasts;
 }
