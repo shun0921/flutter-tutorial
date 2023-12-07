@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
-import 'package:flutter_tutorial/async/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
+import 'package:flutter_tutorial/mercari/view/page/mercari_page.dart';
 import 'package:flutter_tutorial/qiita/view/qiita_home_page.dart';
 import 'package:flutter_tutorial/residence/residence_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
@@ -17,20 +17,23 @@ class IndexPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const BuildingLayoutPage()),
-                  );
-                },
-                child: const Text('Tutorial1')),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<BuildingLayoutPage>(
+                    builder: (context) => const BuildingLayoutPage(),
+                  ),
+                );
+              },
+              child: const Text('Tutorial1'),
+            ),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => const AnimationPage()),
+                  MaterialPageRoute<AnimationPage>(
+                    builder: (context) => const AnimationPage(),
+                  ),
                 );
               },
               child: const Text('Tutorial1-1'),
@@ -39,7 +42,9 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const YoutubePage()),
+                  MaterialPageRoute<YoutubePage>(
+                    builder: (context) => const YoutubePage(),
+                  ),
                 );
               },
               child: const Text('YouTubeボタン'),
@@ -48,7 +53,7 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<RegidencePage>(
                     builder: (context) => const RegidencePage(),
                   ),
                 );
@@ -59,7 +64,18 @@ class IndexPage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
+                  MaterialPageRoute<Mercari>(
+                    builder: (context) => const Mercari(),
+                  ),
+                );
+              },
+              child: const Text('Mercari'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute<QiitaHomePage>(
                     builder: (context) => const QiitaHomePage(),
                   ),
                 );

@@ -13,7 +13,7 @@ class _Api implements Api {
     this._dio, {
     this.baseUrl,
   }) {
-    baseUrl ??= 'https://qiita.com/api/v2';
+    baseUrl ??= 'https://fluttertutorial-3b89d.web.app/api/v1/';
   }
 
   final Dio _dio;
@@ -21,20 +21,20 @@ class _Api implements Api {
   String? baseUrl;
 
   @override
-  Future<List<Article>> fetchArticles(String tag) async {
+  Future<List<Item>> getItemks() async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final Map<String, dynamic>? _data = null;
     final _result =
-        await _dio.fetch<List<dynamic>>(_setStreamType<List<Article>>(Options(
+        await _dio.fetch<List<dynamic>>(_setStreamType<List<Item>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
     )
             .compose(
               _dio.options,
-              '/tags/${tag}/items',
+              'Mercari/mercari.json',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,7 +44,7 @@ class _Api implements Api {
               baseUrl,
             ))));
     var value = _result.data!
-        .map((dynamic i) => Article.fromJson(i as Map<String, dynamic>))
+        .map((dynamic i) => Item.fromJson(i as Map<String, dynamic>))
         .toList();
     return value;
   }
