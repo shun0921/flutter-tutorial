@@ -3,13 +3,6 @@ import 'package:flutter/material.dart';
 enum Choice { recommend, refurbished }
 
 class ResidenceInfo {
-  final List<String> imagePath;
-  final String buildingNamePath;
-  final String roomPrice;
-  final String nearStation;
-  final String roomSize;
-  final String buildingSize;
-
   ResidenceInfo({
     required this.imagePath,
     required this.buildingNamePath,
@@ -18,10 +11,16 @@ class ResidenceInfo {
     required this.roomSize,
     required this.buildingSize,
   });
+  final List<String> imagePath;
+  final String buildingNamePath;
+  final String roomPrice;
+  final String nearStation;
+  final String roomSize;
+  final String buildingSize;
 }
 
 class RegidencePage extends StatefulWidget {
-  const RegidencePage({Key? key}) : super(key: key);
+  const RegidencePage({super.key});
 
   @override
   State<RegidencePage> createState() => _RegidencePageState();
@@ -60,21 +59,23 @@ class _RegidencePageState extends State<RegidencePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(60.0),
+        preferredSize: const Size.fromHeight(60),
         child: AppBar(
           automaticallyImplyLeading: false,
           title: Center(
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Expanded(
                     child: _buildChoiceButton(Choice.recommend, 'カウルのおすすめ'),
                   ),
                 ),
                 Expanded(
                   child: _buildChoiceButtonSecond(
-                      Choice.refurbished, 'リフォーム済みの物件'),
+                    Choice.refurbished,
+                    'リフォーム済みの物件',
+                  ),
                 ),
                 const SizedBox(
                   width: 40,
@@ -97,12 +98,12 @@ class _RegidencePageState extends State<RegidencePage> {
           ),
         ),
       ),
-      body: Container(
+      body: ColoredBox(
         color: Colors.grey.withOpacity(0.2),
         child: Column(
           children: [
             const Padding(
-              padding: EdgeInsets.all(5.0),
+              padding: EdgeInsets.all(5),
               child: Recommend(),
             ),
             Expanded(
@@ -110,7 +111,8 @@ class _RegidencePageState extends State<RegidencePage> {
                 itemCount: _residenseData.length,
                 itemBuilder: (BuildContext context, index) {
                   return HouseDetailWidget(
-                      residenceInfo: _residenseData[index]);
+                    residenceInfo: _residenseData[index],
+                  );
                 },
               ),
             ),
@@ -195,14 +197,15 @@ class _RegidencePageState extends State<RegidencePage> {
         overflow: TextOverflow.ellipsis,
         softWrap: false,
         style: TextStyle(
-            color: selectedChoice == choice ? Colors.teal : Colors.black,
-            fontSize: 13),
+          color: selectedChoice == choice ? Colors.teal : Colors.black,
+          fontSize: 13,
+        ),
       ),
     );
   }
 
   Widget _buildChoiceButtonSecond(Choice choice, String text) {
-    String notificationCount = '3';
+    const notificationCount = '3';
 
     return Stack(
       clipBehavior: Clip.none,
@@ -220,8 +223,9 @@ class _RegidencePageState extends State<RegidencePage> {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(
-                color: selectedChoice == choice ? Colors.teal : Colors.black,
-                fontSize: 13),
+              color: selectedChoice == choice ? Colors.teal : Colors.black,
+              fontSize: 13,
+            ),
           ),
         ),
         Positioned(
@@ -237,9 +241,9 @@ class _RegidencePageState extends State<RegidencePage> {
               minWidth: 18,
               minHeight: 18,
             ),
-            child: Text(
+            child: const Text(
               notificationCount,
-              style: const TextStyle(
+              style: TextStyle(
                 color: Colors.white,
                 fontSize: 12,
                 fontWeight: FontWeight.bold,
@@ -254,7 +258,7 @@ class _RegidencePageState extends State<RegidencePage> {
 }
 
 class Recommend extends StatefulWidget {
-  const Recommend({Key? key}) : super(key: key);
+  const Recommend({super.key});
 
   @override
   State<Recommend> createState() => _RecommendState();
@@ -264,7 +268,7 @@ class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -282,7 +286,7 @@ class _RecommendState extends State<Recommend> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     '新着3件',
                     style: TextStyle(fontSize: 15, color: Colors.red),
@@ -293,7 +297,6 @@ class _RecommendState extends State<Recommend> {
                   onPressed: () {},
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
                   ),
                   child: const Text(
                     '編集',
@@ -306,13 +309,12 @@ class _RecommendState extends State<Recommend> {
                     Icons.edit,
                     color: Colors.teal,
                   ),
-                  padding: const EdgeInsets.all(0),
                   constraints: const BoxConstraints(),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Container(
                 width: 400,
                 color: Colors.grey.withOpacity(0.1),
@@ -367,14 +369,13 @@ class _RecommendState extends State<Recommend> {
 }
 
 class HouseDetailWidget extends StatelessWidget {
+  const HouseDetailWidget({super.key, required this.residenceInfo});
   final ResidenceInfo residenceInfo;
-  const HouseDetailWidget({Key? key, required this.residenceInfo})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -392,7 +393,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
+              padding: const EdgeInsets.only(left: 8, top: 2, bottom: 1),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -405,7 +406,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -420,7 +421,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.train, size: 15),
@@ -436,7 +437,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.menu, size: 15),
@@ -452,7 +453,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.house_siding_sharp, size: 15),
@@ -468,12 +469,12 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -482,7 +483,6 @@ class HouseDetailWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -504,7 +504,7 @@ class HouseDetailWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -513,7 +513,6 @@ class HouseDetailWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),

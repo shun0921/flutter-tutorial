@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tutorial/animation/animation_page.dart';
+import 'package:flutter_tutorial/async/async.dart';
 import 'package:flutter_tutorial/building/building_layout_page.dart';
 import 'package:flutter_tutorial/mercari/mercari_page.dart';
 import 'package:flutter_tutorial/regidence/regidence_page.dart';
 import 'package:flutter_tutorial/todo_list/view/todo_view.dart';
+import 'package:flutter_tutorial/qiita/view/qiita_home_page.dart';
 import 'package:flutter_tutorial/youtube/youtube_page.dart';
 
 class IndexPage extends ConsumerWidget {
@@ -50,7 +52,8 @@ class IndexPage extends ConsumerWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const RegidencePage()),
+                    builder: (context) => const RegidencePage(),
+                  ),
                 );
               },
               child: const Text('Regidence'),
@@ -74,6 +77,12 @@ class IndexPage extends ConsumerWidget {
                 );
               },
               child: const Text('Todo'),
+                  MaterialPageRoute(
+                    builder: (context) => const QiitaHomePage(),
+                  ),
+                );
+              },
+              child: const Text('Qiita'),
             ),
           ],
         ),

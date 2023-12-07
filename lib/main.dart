@@ -5,9 +5,7 @@ import 'package:flutter_tutorial/todo_list/model/todos.dart';
 
 void main() {
   runApp(
-    ProviderScope(
-      child: MyApp(),
-    ),
+    const ProviderScope(child: MyApp()),
   );
 }
 
@@ -22,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(),
-      home: IndexPage(),
+      home: const IndexPage(),
     );
   }
 }
