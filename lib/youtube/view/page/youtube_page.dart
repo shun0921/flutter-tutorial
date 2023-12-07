@@ -11,7 +11,6 @@ class YoutubePage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final youtubeState = ref.watch(youtubeStateNotifierProvider);
-    ref.read(youtubeStateNotifierProvider.notifier).fetchMovies();
     return Scaffold(
       appBar: customAppBar(),
       body: youtubeState.isLoading
