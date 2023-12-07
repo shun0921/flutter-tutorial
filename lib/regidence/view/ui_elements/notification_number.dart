@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
 class NotificationButton extends StatelessWidget {
-  final Function() onPressed;
-  final String text;
-  final String notificationCount;
-  final bool isSelected;
-
   const NotificationButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
     required this.notificationCount,
     this.isSelected = false,
-  }) : super(key: key);
+  });
+  // ignore: inference_failure_on_function_return_type
+  final Function() onPressed;
+  final String text;
+  final String notificationCount;
+  final bool isSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +30,9 @@ class NotificationButton extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             softWrap: false,
             style: TextStyle(
-                color: isSelected ? Colors.teal : Colors.black, fontSize: 13),
+              color: isSelected ? Colors.teal : Colors.black,
+              fontSize: 13,
+            ),
           ),
         ),
         Positioned(

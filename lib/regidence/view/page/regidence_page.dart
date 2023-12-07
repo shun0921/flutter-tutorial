@@ -7,7 +7,7 @@ import 'package:flutter_tutorial/regidence/view/ui_elements/recommend_of_service
 import 'package:flutter_tutorial/regidence/viewmodel/regidence_viewmodel.dart';
 
 class RegidencePage extends ConsumerWidget {
-  const RegidencePage({Key? key}) : super(key: key);
+  const RegidencePage({super.key});
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -18,12 +18,12 @@ class RegidencePage extends ConsumerWidget {
       appBar: const CustomAppBar(),
       body: regidenceState.isLoading
           ? const Center(child: CircularProgressIndicator())
-          : Container(
+          : ColoredBox(
               color: Colors.grey.withOpacity(0.2),
               child: Column(
                 children: [
                   const Padding(
-                    padding: EdgeInsets.all(5.0),
+                    padding: EdgeInsets.all(5),
                     child: Recommend(),
                   ),
                   Expanded(
@@ -31,7 +31,8 @@ class RegidencePage extends ConsumerWidget {
                       itemCount: regidenceState.regidences.length,
                       itemBuilder: (BuildContext context, index) {
                         return HouseDetailWidget(
-                            regidence: regidenceState.regidences[index]);
+                          regidence: regidenceState.regidences[index],
+                        );
                       },
                     ),
                   ),

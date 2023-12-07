@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Recommend extends StatefulWidget {
-  const Recommend({Key? key}) : super(key: key);
+  const Recommend({super.key});
 
   @override
   State<Recommend> createState() => _RecommendState();
@@ -11,7 +11,7 @@ class _RecommendState extends State<Recommend> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -29,7 +29,7 @@ class _RecommendState extends State<Recommend> {
                   overflow: TextOverflow.ellipsis,
                 ),
                 const Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(8),
                   child: Text(
                     '新着3件',
                     style: TextStyle(fontSize: 15, color: Colors.red),
@@ -40,7 +40,6 @@ class _RecommendState extends State<Recommend> {
                   onPressed: () {},
                   style: TextButton.styleFrom(
                     padding: EdgeInsets.zero,
-                    minimumSize: const Size(0, 0),
                   ),
                   child: const Text(
                     '編集',
@@ -53,13 +52,12 @@ class _RecommendState extends State<Recommend> {
                     Icons.edit,
                     color: Colors.teal,
                   ),
-                  padding: const EdgeInsets.all(0),
                   constraints: const BoxConstraints(),
                 ),
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.all(8),
               child: Container(
                 width: 400,
                 color: Colors.grey.withOpacity(0.1),

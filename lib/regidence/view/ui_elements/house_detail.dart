@@ -2,14 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_tutorial/regidence/model/regidence.dart';
 
 class HouseDetailWidget extends StatelessWidget {
+  const HouseDetailWidget({super.key, required this.regidence});
   final Regidence regidence;
-  const HouseDetailWidget({Key? key, required this.regidence})
-      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5),
       child: Container(
         width: 400,
         decoration: BoxDecoration(
@@ -27,7 +26,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 2.0, bottom: 1.0),
+              padding: const EdgeInsets.only(left: 8, top: 2, bottom: 1),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -40,7 +39,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -55,7 +54,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.train, size: 15),
@@ -71,7 +70,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.menu, size: 15),
@@ -87,7 +86,7 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8.0, top: 1.0, bottom: 4.0),
+              padding: const EdgeInsets.only(left: 8, top: 1, bottom: 4),
               child: Row(
                 children: [
                   const Icon(Icons.house_siding_sharp, size: 15),
@@ -103,12 +102,12 @@ class HouseDetailWidget extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -117,7 +116,6 @@ class HouseDetailWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
@@ -139,7 +137,7 @@ class HouseDetailWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(9.0),
+                    padding: const EdgeInsets.all(9),
                     child: SizedBox(
                       width: 160,
                       height: 40,
@@ -148,7 +146,6 @@ class HouseDetailWidget extends StatelessWidget {
                           backgroundColor: Colors.white,
                           side: const BorderSide(
                             color: Colors.grey,
-                            width: 1,
                           ),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),
