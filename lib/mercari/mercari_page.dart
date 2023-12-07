@@ -17,10 +17,10 @@ class Mercari extends StatefulWidget {
   const Mercari({super.key});
 
   @override
-  State<Mercari> createState() => _MercariState();
+  State<Mercari> createState() => MercariState();
 }
 
-class _MercariState extends State<Mercari> {
+class MercariState extends State<Mercari> {
   final List<ItemDetail> _itemData = [
     ItemDetail(
       imageUrl:

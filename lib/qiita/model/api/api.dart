@@ -4,7 +4,7 @@ import 'package:retrofit/retrofit.dart';
 
 part 'api.g.dart';
 
-@RestApi(baseUrl: "https://qiita.com/api/v2")
+@RestApi(baseUrl: 'https://qiita.com/api/v2')
 abstract class Api {
   factory Api(Dio dio, {String baseUrl}) = _Api;
 
